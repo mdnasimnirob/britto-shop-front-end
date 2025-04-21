@@ -1,9 +1,12 @@
 import React from 'react';
+import Banner from '../Component/Banner';
+import Header from '../Component/Header'
 
 const Home = () => {
     return (
         <div>
-            <p className='text-lime-700 text-2xl'>this is Home</p>
+            <Banner/>
+            <Header/>
         </div>
     );
 };
