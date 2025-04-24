@@ -1,13 +1,15 @@
 import React from 'react';
-import banner from '../assets/banner.jpg';
-import { Parallax } from 'react-parallax';
 
-const Header = () => {
+import { Parallax } from 'react-parallax';
+import Banner from '../../assets/banner.jpg'
+
+
+const Cover = () => {
     return (
         <>
             <Parallax
                 blur={{ min: -30, max: 30 }}
-                bgImage={banner}
+                bgImage={Banner}
                 bgImageAlt="A scenic background"
                
             >
@@ -29,4 +31,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default Cover;

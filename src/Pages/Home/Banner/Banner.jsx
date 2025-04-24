@@ -1,11 +1,11 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 
-import img1 from '../assets/banner/beautiful-asian.jpg'
-import img2 from '../assets/banner/excited-girl-open-up.jpg'
-import img3 from '../assets/banner/low-angle.jpg'
-import img4 from '../assets/banner/satisfied-young-black.jpg'
-import img5 from '../assets/banner/portrait-young.jpg'
+import img1 from '../../../assets/banner/beautiful-asian.jpg'
+import img2 from '../../../assets/banner/excited-girl-open-up.jpg'
+import img3 from '../../../assets/banner/low-angle.jpg'
+import img4 from '../../../assets/banner/satisfied-young-black.jpg'
+import img5 from '../../../assets/banner/portrait-young.jpg'
 
 
 const Banner = () => {
