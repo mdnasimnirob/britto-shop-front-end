@@ -33,6 +33,7 @@ const Category = () => {
                     <SwiperSlide key={index}>
                         <div className="w-full h-[250px] bg-slate-300 p-1 flex items-center justify-center">
                             <img src={img} alt={`t-shirt-${index}`} className="w-full h-full object-cover rounded" />
+                            <h1>Try</h1>
                         </div>
                     </SwiperSlide>
                 ))}
