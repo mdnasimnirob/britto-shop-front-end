@@ -16,7 +16,7 @@ const Category = () => {
     const images = [img1, img2, img3, img4, img5];
     const Category = [, img2, img3, img4, img5];
     return (
-        <section className='mx-10'>
+        <section className=''>
             <SectionTittle
                 subHeading={'from 10am to 11pm'}
                 heading={'ONLINE ORDER'}
