@@ -2,8 +2,8 @@
 const Footer = () => {
     return (
         <>
-            <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
-                <aside>
+            <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10 flex justify-around items-center h-full">
+                <aside className="">
                     <svg
                         width="50"
                         height="50"
@@ -21,7 +21,7 @@ const Footer = () => {
                         Providing reliable tech since 1992
                     </p>
                 </aside>
-                <nav>
+                <nav className="">
                     <h6 className="footer-title">Social</h6>
                     <div className="grid grid-flow-col gap-4">
                         <a>
@@ -61,9 +61,9 @@ const Footer = () => {
                 </nav>
                
             </footer>
-            <footer className="footer sm:footer-horizontal footer-center bg-neutral text-base-content p-4">
+            <footer className="footer sm:footer-horizontal footer-center bg-neutral text-base-content p-4 text-white">
                     <aside>
-                        <p>Copyright © {new Date().getFullYear()} - All right reserved by ACME Industries Ltd</p>
+                        <p>Copyright © {new Date().getFullYear()} - All right reserved by <span className="text-blue-600">Britto Shop</span></p>
                     </aside>
                 </footer>
         </>

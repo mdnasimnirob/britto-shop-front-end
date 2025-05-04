@@ -17,9 +17,11 @@ const Cover = () => {
             >
                 
                 <div className='hero' style={{ height: '600px' }}>
+                <div className='border'>
                 <SectionTittle></SectionTittle>
+                </div>
                 <div className="hero-overlay bg-opacity-60 bg-black"></div>
-                <div  className="hero-content text-neutral-content text-center">
+                <div  className="hero-content text-neutral-content text-center flex-col lg:flex-row">
                     <img className='w-1/2' src={img2} alt="" />
                     <div className="max-w-md">
                         <h1 className="mb-5 text-5xl font-bold ">Britto Shop</h1>
