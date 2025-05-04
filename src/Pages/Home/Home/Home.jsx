@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from '../Banner/Banner';
 import Cover from '../../../Component/Shared/Cover';
 import Category from '../Category/Category';
+import Feature from '../Feature/Feature';
 
 
 const Home = () => {
@@ -9,6 +10,7 @@ const Home = () => {
         <div>
             <Banner/>
             <Category/>
+            <Feature></Feature>
             <Cover/>
         </div>
     );
