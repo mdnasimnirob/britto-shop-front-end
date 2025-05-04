@@ -15,25 +15,24 @@ import SectionTittle from '../../../Component/SectionTittle/SectionTittle';
 const Category = () => {
     const images = [img1, img2, img3, img4, img5];
     return (
-        <section>
+        <section className='mx-7'>
             <SectionTittle
-            subHeading={'on time'}
-            heading ={'ONLINE ORDER'}
+                subHeading={'on time'}
+                heading={'ONLINE ORDER'}
             >
             </SectionTittle>
             <Swiper
                 slidesPerView={4}
                 spaceBetween={30}
-                centeredSlides={true}
+                // centeredSlides={true}
                 pagination={{ clickable: true }}
                 modules={[Pagination]}
                 className="mySwiper mb-24"
             >
                 {images?.map((img, index) => (
                     <SwiperSlide key={index}>
-                        <div className="w-full h-[250px] bg-slate-300 p-1 flex items-center justify-center">
+                        <div className="w-full h-[250px] bg-slate-300 p-1 flex items-center justify-center hover:translate-x-1">
                             <img src={img} alt={`t-shirt-${index}`} className="w-full h-full object-cover rounded" />
-                            <h1>Try</h1>
                         </div>
                     </SwiperSlide>
                 ))}
