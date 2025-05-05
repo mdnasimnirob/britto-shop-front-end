@@ -16,16 +16,16 @@ const Cover = () => {
 
             >
 
-                    <div className='hero-overlay bg-opacity-60 bg-black py-0.5'>
-                        <SectionTittle 
-                        subHeading={'Check it out'} 
+                <div className='hero-overlay bg-opacity-60 bg-black pt-8 pb-0.5 h-44'>
+                    <SectionTittle
+                        subHeading={'Check it out'}
                         heading={'From Our Menu'}
-                        ></SectionTittle>
-                    </div>
+                    ></SectionTittle>
+                </div>
                 <div className='hero' style={{ height: '600px' }}>
                     <div className="hero-overlay bg-opacity-60 bg-black"></div>
-                    <div className="hero-content text-neutral-content text-center flex-col lg:flex-row">
-                        <img className='w-1/2 rounded transition-transform duration-300 transform hover:scale-105' src={img2} alt="" />
+                    <div className="hero-content text-neutral-content text-center flex-col lg:flex-row lg:gap-9 gap-2">
+                        <img className='my-2 lg:my-0 lg:w-1/2 rounded transition-transform duration-300 transform hover:scale-105' src={img2} alt="" />
                         <div className="max-w-md">
                             <h1 className="mb-7 text-5xl font-bold text-orange-500">ব্রিট্টো শপ</h1>
                             <p className="mb-7">

@@ -13,8 +13,13 @@ import { Pagination } from 'swiper/modules';
 import SectionTittle from '../../../Component/SectionTittle/SectionTittle';
 
 const Category = () => {
-    const images = [img1, img2, img3, img4, img5];
-    const Category = [, img2, img3, img4, img5];
+    const categories = [
+        { name: 'Casual T-Shirt', image: img1 },
+        { name: 'Formal Shirt', image: img2 },
+        { name: 'Print T-Shirt', image: img3 },
+        { name: 'Plain T-Shirt', image: img4 },
+        { name: 'Stylish Tee', image: img5 },
+    ];
     return (
         <section className=''>
             <SectionTittle
@@ -24,22 +29,31 @@ const Category = () => {
             </SectionTittle>
 
             <Swiper
+
                 slidesPerView={4}
                 spaceBetween={20}
                 // centeredSlides={true}
                 pagination={{ clickable: true }}
                 modules={[Pagination]}
+                breakpoints={{
+                    0: {
+                        slidesPerView: 2,
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                    },
+                }}
                 className="mySwiper mb-24 "
             >
-                {images?.map((img, index) => (
+                {categories?.map((item, index) => (
                     <SwiperSlide key={index}>
                         <div className="w-full h-[350px] bg-gray-100 p-0.5 flex items-center justify-center ">
                             <img
-                                src={img}
+                                src={item.image}
                                 alt={`t-shirt-${index}`}
                                 className="w-full h-full object-cover transition-transform duration-300 transform hover:scale-105"
                             />
-                            <p></p>
+                            <p className='text-gray-100 opacity-80 fixed bottom-9 lg:text-2xl uppercase font-normal text-xl'>{item.name}</p>
                         </div>
                     </SwiperSlide>
                 ))}
