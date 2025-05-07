@@ -16,22 +16,22 @@ const Navbar = () => {
     const navLink = (<>
 
         <li>
-            <NavLink to='/home' className={({ isActive }) => isActive ? 'text-blue-600' : 'text-white'}>Home</NavLink>
+            <NavLink to='/home' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Home</NavLink>
         </li>
         <li>
-            <NavLink to='/about' className={({ isActive }) => isActive ? 'text-blue-600' : 'text-white'}>About</NavLink>
+            <NavLink to='/about' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>About</NavLink>
         </li>
         <li>
-            <NavLink to='/order' className={({ isActive }) => isActive ? 'text-blue-600' : 'text-white'}>Order</NavLink>
+            <NavLink to='/order' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Order</NavLink>
         </li>
         <li>
-            <NavLink to='/card' className={({ isActive }) => isActive ? 'text-blue-600' : 'text-white'}>Card</NavLink>
+            <NavLink to='/card' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Card</NavLink>
         </li>
         {
             user ? (
                 <>
                     <li>
-                        <button onClick={handleLogout} className="text-white hover:text-blue-600">
+                        <button onClick={handleLogout} className="text-white text-base lg:px-3 px-2 xl:px-5 hover:text-blue-600">
                             Logout
                         </button>
                     </li>
@@ -39,10 +39,10 @@ const Navbar = () => {
             ) : (
                 <>
                     <li>
-                        <NavLink to='/login' className={({ isActive }) => isActive ? 'text-blue-600' : 'text-white'}>Login</NavLink>
+                        <NavLink to='/login' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Login</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/register' className={({ isActive }) => isActive ? 'text-blue-600' : 'text-white'}>Register</NavLink>
+                        <NavLink to='/register' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Register</NavLink>
                     </li>
                 </>
             )
@@ -51,15 +51,15 @@ const Navbar = () => {
 
     </>)
     return (
-        <div className="navbar bg-black shadow-sm fixed z-40 bg-opacity-50 text-white max-w-screen-xl">
+        <div className="navbar bg-black shadow-sm fixed z-40 bg-opacity-40 text-white max-w-screen-xl backdrop-blur-[8px]">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-42 p-2 shadow">
                         {navLink}
                     </ul>
                 </div>
@@ -68,8 +68,8 @@ const Navbar = () => {
                     className="btn btn-ghost px-4 py-6"
                 >
                     <div className="flex flex-col items-center w-fit text-center">
-                        <span className="text-xl text-orange-500 uppercase">Britto Shop</span>
-                        <span className="font-normal text-white uppercase text-[12px] tracking-widest">
+                        <span className="lg:text-xl text-base text-orange-400 uppercase">Britto Shop</span>
+                        <span className="font-normal text-white uppercase lg:text-[12px] text-[10px] tracking-widest">
                             E C O M M E R C E
                         </span>
                     </div>
@@ -80,11 +80,11 @@ const Navbar = () => {
 
             </div>
             <div className="navbar-end ">
-                <ul className="menu menu-horizontal px-1 hidden lg:flex">
+                <ul className="menu menu-horizontal lg:px-1 px-0 hidden lg:flex  ">
                     {navLink}
                 </ul>
-                <div className='gap-4 ml-6 flex'>
-                    <button className=''><img className='rounded-full border border-r-pink-700 border-l-pink-700 border-b-sky-700 border-t-0 border-b-0 p-0.5  w-12 h-12  ' src={user ? user?.photoURL : '/public/shopping.png'} alt="" /></button>
+                <div className='gap-4 ml-2 mr-2 flex'>
+                    <button className=''><img className='rounded-full border border-r-pink-400 border-l-pink-400 border-b-sky-400 border-t-0 border-b-0 p-0.4  w-12 h-12  ' src={user ? user?.photoURL : '/public/shopping.png'} alt="" /></button>
                 </div>
             </div>
         </div>
