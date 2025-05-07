@@ -77,13 +77,14 @@ const Navbar = () => {
 
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                    {navLink}
-                </ul>
+
             </div>
             <div className="navbar-end ">
-                <div className='gap-4 flex'>
-                    <button className=''><img className='rounded-full  p-0.5  w-12 h-12  ' src={user ? user?.photoURL : '/public/shopping.png'} alt="" /></button>
+                <ul className="menu menu-horizontal px-1 hidden lg:flex">
+                    {navLink}
+                </ul>
+                <div className='gap-4 ml-6 flex'>
+                    <button className=''><img className='rounded-full border border-r-pink-700 border-l-pink-700 border-b-sky-700 border-t-0 border-b-0 p-0.5  w-12 h-12  ' src={user ? user?.photoURL : '/public/shopping.png'} alt="" /></button>
                 </div>
             </div>
         </div>
