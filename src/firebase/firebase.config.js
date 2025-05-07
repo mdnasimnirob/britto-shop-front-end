@@ -6,12 +6,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDLFVLRCEHosZFh_Y1NVymWj2-VCMe9aN8",
-  authDomain: "britto-shop.firebaseapp.com",
-  projectId: "britto-shop",
-  storageBucket: "britto-shop.firebasestorage.app",
-  messagingSenderId: "1016440927773",
-  appId: "1:1016440927773:web:fa5f78c7b8caba379278f4",
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
