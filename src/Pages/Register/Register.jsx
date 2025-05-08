@@ -1,15 +1,17 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 
 
 const Register = () => {
     const { user, googleLogin, loading } = useContext(AuthContext)
+    const navigate = useNavigate();
     const handleGoogleLogin = () => {
         googleLogin()
             .then(result => {
-                console.log(result)
+                console.log(result.user)
+                navigate('/home')
             })
 
             .catch(error => {
@@ -27,12 +29,12 @@ const Register = () => {
                     <div className="relative mb-6 mt-5">
                         <input
                             type="text"
-                            id="Input2"
+                            id="Input"
                             placeholder="Enter Your Name"
                             className="peer block w-full border-b-2 border-gray-300 bg-transparent pt-4 pb-1 text-gray-900 placeholder-gray-400 outline-none transition-all duration-200 focus:border-blue-600 focus:placeholder-transparent"
                         />
                         <label
-                            for="Input2"
+                            htmlFor="Input"
                             className="absolute left-0 top-1/2 transform -translate-y-1/2 mb-0 max-w-[90%] text-gray-400 text-sm transition-all duration-200 scale-100 origin-left pointer-events-none opacity-0 peer-focus:top-0 peer-focus:opacity-100 peer-focus:scale-75 peer-focus:text-blue-600"
                         >
                             Full Name
@@ -47,7 +49,7 @@ const Register = () => {
                             className="peer block w-full border-b-2 border-gray-300 bg-transparent pt-4 pb-1 text-gray-900 placeholder-gray-400 outline-none transition-all duration-200 focus:border-blue-600 focus:placeholder-transparent"
                         />
                         <label
-                            for="Input2"
+                            htmlFor="Input2"
                             className="absolute left-0 top-1/2 transform -translate-y-1/2 mb-0 max-w-[90%] text-gray-400 text-sm transition-all duration-200 scale-100 origin-left pointer-events-none opacity-0 peer-focus:top-0 peer-focus:opacity-100 peer-focus:scale-75 peer-focus:text-blue-600"
                         >
                             Email Address
@@ -62,7 +64,7 @@ const Register = () => {
                             className="peer block w-full border-b-2 border-gray-300 bg-transparent pt-4 pb-1 text-gray-900 placeholder-gray-400 outline-none transition-all duration-200 focus:border-blue-600 focus:placeholder-transparent"
                         />
                         <label
-                            for="Input22"
+                            htmlFor="Input22"
                             className="absolute left-0 top-1/2 transform -translate-y-1/2 mb-0 max-w-[90%] text-gray-400 text-sm transition-all duration-200 scale-100 origin-left pointer-events-none opacity-0 peer-focus:top-0 peer-focus:opacity-100 peer-focus:scale-75 peer-focus:text-blue-600"
                         >
                             Password
@@ -74,7 +76,7 @@ const Register = () => {
                             <input type="checkbox" value="" id="exampleCheck2" />
                             <label
                                 className="inline-block text-gray-500 ps-[0.15rem] hover:cursor-pointer"
-                                for="exampleCheck2"
+                                htmlFor="exampleCheck2"
                             >
                                 I accept <span className="text-blue-600">Terms & Conditions</span>
                             </label>

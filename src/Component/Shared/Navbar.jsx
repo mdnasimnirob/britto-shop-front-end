@@ -1,10 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProviders';
-import { Result } from 'postcss';
+import { AiOutlineClose } from 'react-icons/ai';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
+    const [open, setOpen] = useState(false)
+    const menuRef = useRef(null);
+    console.log(open)
+
+    const handleToggle = () => {
+        setOpen((prev) => !prev)
+    }
+
     const handleLogout = () => {
         logOut()
             .then(() => {
@@ -13,19 +21,35 @@ const Navbar = () => {
             })
             .catch(err => console.error(err));
     }
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
     const navLink = (<>
 
         <li>
-            <NavLink to='/home' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Home</NavLink>
+            <NavLink to='/' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Home</NavLink>
         </li>
         <li>
-            <NavLink to='/about' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>About</NavLink>
+            <NavLink to='/product' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Shop</NavLink>
         </li>
         <li>
-            <NavLink to='/order' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Order</NavLink>
+            <NavLink to='/cart' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Cart</NavLink>
         </li>
         <li>
-            <NavLink to='/card' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Card</NavLink>
+            <NavLink to='/wishlist' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Wishlist</NavLink>
+        </li>
+        <li>
+            <NavLink to='/orders' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Orders</NavLink>
         </li>
         {
             user ? (
@@ -41,9 +65,9 @@ const Navbar = () => {
                     <li>
                         <NavLink to='/login' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Login</NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                         <NavLink to='/register' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Register</NavLink>
-                    </li>
+                    </li> */}
                 </>
             )
         }
@@ -51,17 +75,27 @@ const Navbar = () => {
 
     </>)
     return (
-        <div className="navbar bg-black shadow-sm fixed z-40 bg-opacity-40 text-white max-w-screen-xl backdrop-blur-[8px]">
+        <div ref={menuRef} className="navbar bg-black shadow-sm fixed z-30 bg-opacity-40 text-white max-w-screen-xl backdrop-blur-[8px]">
             <div className="navbar-start">
                 <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+                    <div onClick={handleToggle} role="button" className="btn btn-ghost lg:hidden">
+                        {
+                            open ? <AiOutlineClose className="h-4 w-4" /> : <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+                        }
                     </div>
                     <ul
-                        tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-42 p-2 shadow">
+                        className={open
+                            ? 'bg-black/40 shadow-sm backdrop-blur-[30px] rounded-lg rounded-l-none h-screen mt-3 w-56 p-2 z-40 fixed left-0 lg:hidden xl:hidden text-white'
+                            : 'hidden -left-80 text-white '}>
                         {navLink}
                     </ul>
+
+
+
+                    {/* <ul
+                        className={open ? 'bg-black shadow-sm backdrop-blur-[30px] rounded-lg rounded-l-none h-screen opacity-40 mt-3 w-56 p-2 z-40 fixed left-0 ' : 'hidden -left-80 text-white'}>
+                        {navLink}
+                    </ul> */}
                 </div>
                 <NavLink
                     to="/"

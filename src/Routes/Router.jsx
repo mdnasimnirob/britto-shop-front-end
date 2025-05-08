@@ -4,6 +4,10 @@ import Error from "../Pages/Error";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import Product from "../Pages/Products/Products/Product";
+import Cart from "../Pages/Cart/Cart/Cart";
+import Wishlist from "../Pages/Wishlist/Wishlist/Wishlist";
+import Orders from "../Pages/Orders/Orders/Orders";
 
 
 
@@ -15,13 +19,29 @@ const Router = createBrowserRouter([
         element: <MainLayout />,
         errorElement: <Error />,
         children: [
+            // {
+            //     path: '/',
+            //     element: <Home />
+            // },
             {
                 path: '/',
                 element: <Home />
             },
             {
-                path: '/home',
-                element: <Home />
+                path: '/product',
+                element: <Product />
+            },
+            {
+                path: '/cart',
+                element: <Cart />
+            },
+            {
+                path: '/wishlist',
+                element: <Wishlist />
+            },
+            {
+                path: '/orders',
+                element: <Orders />
             },
 
         ]
