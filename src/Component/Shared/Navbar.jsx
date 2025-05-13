@@ -45,12 +45,22 @@ const Navbar = () => {
         <li>
             <NavLink to='/cart' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Cart</NavLink>
         </li>
-        <li>
+        {/* <li>
             <NavLink to='/wishlist' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Wishlist</NavLink>
+        </li> */}
+        <li className="relative group cursor-pointer">
+            <span className="text-white">Categories</span>
+            <ul className="absolute hidden group-hover:block bg-black backdrop-blur-[30px] bg-opacity-40  text-white mt-9  -left-4 p-2 w-[120px] rounded shadow-lg z-50">
+                <li><NavLink to="/fashion" className="block px-4 py-2 hover:bg-white hover:text-black">Fashion</NavLink></li>
+                <li><NavLink to="/electronics" className="block px-4 py-2 hover:bg-white hover:text-black">Electronics</NavLink></li>
+
+            </ul>
         </li>
+
         <li>
             <NavLink to='/orders' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Orders</NavLink>
         </li>
+
         {
             user ? (
                 <>
