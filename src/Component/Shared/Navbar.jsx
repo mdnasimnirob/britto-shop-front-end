@@ -1,13 +1,30 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProviders';
 import { AiOutlineClose } from 'react-icons/ai';
+import { IoIosArrowDown } from 'react-icons/io';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
     const [open, setOpen] = useState(false)
     const menuRef = useRef(null);
+    const [dropdown, setDropdown] = useState(false);
     console.log(open)
+
+    const categories = ['Fashion', 'Electronics'];
+    const location = useLocation();
+    const path = location.pathname.split('/')[1]; // e.g. '/fashion' → 'fashion'
+    console.log(path)
+
+    // Check if current path is a category
+    const isCategoryActive = categories.includes(path);
+    const currentCategory = isCategoryActive
+        ? path.charAt(0).toUpperCase() + path.slice(1)
+        : '';
+
+    const handleCategoryChange = (category) => {
+        setDropdown(false); // Close the dropdown after selection
+    };
 
     const handleToggle = () => {
         setOpen((prev) => !prev)
@@ -36,48 +53,138 @@ const Navbar = () => {
     }, []);
     const navLink = (<>
 
+
         <li>
-            <NavLink to='/' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Home</NavLink>
+            <NavLink to='/' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5' : 'text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5'}>
+
+                <h2
+                    className='flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 '>
+                    <span>Home </span>
+                    {/* <span> <IoIosArrowDown /></span> */}
+                </h2>
+            </NavLink>
         </li>
-        <li>
-            <NavLink to='/product' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Shop</NavLink>
+        <li className='lg:my-0 my-1'>
+            <NavLink to='/product' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5' : 'text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5'}>
+
+                <h2
+                    className='flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 '>
+                    <span>Shop </span>
+                    {/* <span> <IoIosArrowDown /></span> */}
+                </h2>
+            </NavLink>
         </li>
-        <li>
-            <NavLink to='/cart' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Cart</NavLink>
+
+
+        <li className='lg:my-0 my-1'>
+            <NavLink to='/cart' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px- xl:px-5 lg:py-1.5 py-1 ' : 'text-white text-base lg:px-3 lg:py-1.5 py-1  xl:px-5'}>
+
+                <h2
+                    className='flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 '>
+                    <span>Cart </span>
+                    {/* <span> <IoIosArrowDown /></span> */}
+                </h2>
+            </NavLink>
         </li>
         {/* <li>
             <NavLink to='/wishlist' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Wishlist</NavLink>
         </li> */}
-        <li className="relative group cursor-pointer">
-            <span className="text-white">Categories</span>
-            <ul className="absolute hidden group-hover:block bg-black backdrop-blur-[30px] bg-opacity-40  text-white mt-9  -left-4 p-2 w-[120px] rounded shadow-lg z-50">
-                <li><NavLink to="/fashion" className="block px-4 py-2 hover:bg-white hover:text-black">Fashion</NavLink></li>
-                <li><NavLink to="/electronics" className="block px-4 py-2 hover:bg-white hover:text-black">Electronics</NavLink></li>
+        <li className="relative cursor-pointer lg:my-0 my-1" onMouseEnter={() => {
+            if (window.innerWidth >= 1024) setDropdown(true); // lg breakpoint
+        }}
+            onMouseLeave={() => {
+                if (window.innerWidth >= 1024) setDropdown(false);
+            }}>
 
-            </ul>
+            <h1
+                onClick={() => setDropdown((prev) => !prev)}
+                className={`select-none ${isCategoryActive ? 'text-orange-400 text-base lg:px-3 px- xl:px-5 lg:py-1.5 py-' : 'text-white text-base lg:px-3 px- lg:py-1.5 py- xl:px-5'}`}
+            >
+                <h2
+                    className='flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 '>
+                    <span>{currentCategory || 'Categories'} </span>
+                    <span className='lg:hidden'> <IoIosArrowDown /></span>
+                </h2>
+
+            </h1>
+
+
+
+            {dropdown && (
+                <ul className="lg:absolute bg-black backdrop-blur-[30px] bg-opacity-40 text-white mt-0 lg:mt-9 lg:-left-4 p-2 w-full lg:w-[140px] rounded rounded-t-none shadow-lg lg:shadow-none lg:z-50">
+                    {/* Render dynamic category links */}
+                    {categories.map((category) => (
+                        <li key={category}>
+                            <NavLink
+                                to={`/${category}`}
+                                onClick={() => handleCategoryChange(category)}
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? 'block px-4 py-2 hover:bg-white hover:text-black text-orange-400'
+                                        : 'block px-4 py-2 hover:bg-white hover:text-black'
+                                }
+
+                            >
+                                {category}
+                            </NavLink>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </li>
 
-        <li>
-            <NavLink to='/orders' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Orders</NavLink>
+
+        <li className='lg:my-0 my-1'>
+            <NavLink to='/orders' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5' : 'text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5'}>
+
+                <h2
+                    className='flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 '>
+                    <span>Orders </span>
+                    {/* <span> <IoIosArrowDown /></span> */}
+                </h2>
+            </NavLink>
         </li>
 
         {
             user ? (
                 <>
-                    <li>
-                        <button onClick={handleLogout} className="text-white text-base lg:px-3 px-2 xl:px-5 hover:text-blue-600">
-                            Logout
+                    <li className="bottom-16 right-0 w-full lg:w-auto text-center pr-2 bg-black bg-opacity-40 shadow-md
+                                   fixed lg:static lg:my-0 my-1 lg:bg-transparent lg:shadow-none lg:block">
+                        <button
+                            onClick={handleLogout}
+                            className="text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5 w-full"
+                        >
+                            <h2 className="flex justify-center items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 w-full">
+                                <span>Logout</span>
+                            </h2>
                         </button>
                     </li>
+
                 </>
             ) : (
                 <>
-                    <li>
-                        <NavLink to='/login' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Login</NavLink>
+
+                    <li className='lg:my-0 my-1'>
+                        <NavLink to='/login' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5' : 'text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5'}>
+
+                            <h2
+                                className='flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 '>
+                                <span>Login </span>
+                                {/* <span> <IoIosArrowDown /></span> */}
+                            </h2>
+                        </NavLink>
                     </li>
-                    {/* <li>
-                        <NavLink to='/register' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Register</NavLink>
-                    </li> */}
+                    <li className='lg:my-0 my-1 lg:hidden'>
+                        <NavLink to='/register' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5' : 'text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5'}>
+
+                            <h2
+                                className='flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 '>
+                                <span>Register </span>
+                                {/* <span> <IoIosArrowDown /></span> */}
+                            </h2>
+                        </NavLink>
+                    </li>
+
                 </>
             )
         }
@@ -95,7 +202,7 @@ const Navbar = () => {
                     </div>
                     <ul
                         className={open
-                            ? 'bg-black/40 shadow-sm backdrop-blur-[30px] rounded-lg rounded-l-none h-screen mt-3 w-56 p-2 z-40 fixed left-0 lg:hidden xl:hidden text-white'
+                            ? 'bg-black/40  shadow-sm backdrop-blur-[30px]  h-screen mt-3 w-56 p-2 z-40 fixed left-0 lg:hidden xl:hidden text-white'
                             : 'hidden -left-80 text-white '}>
                         {navLink}
                     </ul>

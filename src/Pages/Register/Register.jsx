@@ -11,7 +11,7 @@ const Register = () => {
         googleLogin()
             .then(result => {
                 console.log(result.user)
-                navigate('/home')
+                navigate('/')
             })
 
             .catch(error => {

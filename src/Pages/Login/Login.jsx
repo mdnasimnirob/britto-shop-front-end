@@ -11,7 +11,7 @@ const Login = () => {
         googleLogin()
             .then(result => {
                 console.log(result.user)
-                navigate('/home')
+                navigate('/')
             })
 
             .catch(error => {
