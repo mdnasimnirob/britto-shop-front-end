@@ -1,9 +1,14 @@
-
+import { Helmet } from "react-helmet-async";
+import PageCover from "../../../Component/Shared/PageCover";
+import productImg from '../../../assets/products/product-bg.jpg'
 
 const Product = () => {
     return (
         <div>
-            <h3>this is Our Product</h3>
+            <Helmet>
+                <title>Britto Shop | Products</title>
+            </Helmet>
+            <PageCover img={productImg}></PageCover>
         </div>
     );
 };

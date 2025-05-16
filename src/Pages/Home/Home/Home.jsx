@@ -15,7 +15,9 @@ const Home = () => {
             <Banner />
             <Category />
             <Feature></Feature>
-            <Cover />
+            <div className=''>
+                <Cover />
+            </div>
         </div>
     );
 };

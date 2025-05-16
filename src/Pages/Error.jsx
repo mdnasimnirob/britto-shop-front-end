@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Navbar from '../Component/Shared/Navbar';
+import Footer from '../Component/Shared/Footer';
 
 const Error = () => {
     return (
@@ -10,6 +11,7 @@ const Error = () => {
                 <h1 className='text-6xl text-red-500 '>Page Not Found | 404</h1>
                 <NavLink to='/'><p className='btn btn-error text-lg'>go to home</p></NavLink>
             </div>
+            <Footer></Footer>
         </>
     );
 };

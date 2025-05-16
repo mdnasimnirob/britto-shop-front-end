@@ -3,6 +3,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
     const { user, googleLogin, loading } = useContext(AuthContext)
@@ -21,6 +22,9 @@ const Login = () => {
     }
     return (
         <div className="flex justify-center items-center h-screen">
+            <Helmet>
+                <title>Britto Shop | Login</title>
+            </Helmet>
             <div className="bg-white p-10 px- rounded-xl shadow-md w-full max-w-md">
                 <h2 className="text-2xl text-orange-500 font-bold text-center mb-6"><NavLink to='/'>Britto Shop</NavLink></h2>
                 <p className="font-bold text-blue-600 uppercase py-2">Login</p>

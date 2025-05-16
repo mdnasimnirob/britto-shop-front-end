@@ -1,0 +1,40 @@
+import { Parallax } from "react-parallax";
+
+const PageCover = ({ img, tittle }) => {
+  return (
+
+      <Parallax
+        blur={{ min: -20, max: 20 }}
+        bgImage={img}
+        bgImageAlt="The Products"
+      >
+    
+        <div className="hero" style={{ height: "600px" }}>
+          <div className="hero-overlay bg-opacity-60 bg-black"></div>
+          <div className="hero-content text-neutral-content text-center flex-col lg:flex-row lg:gap-9 gap-2">
+          
+            <div className="max-w-md">
+              <h1 className="mb-7 mt-16 text-5xl font-bold text-orange-500">
+                ব্রিট্টো শপ
+              </h1>
+              <p className="mb-">
+                আমরা মানসম্মত পণ্য ও সেবা দিয়ে থাকি গ্রাহকের সন্তুষ্টিকে
+                অগ্রাধিকার দিয়ে। প্রতিদিনের প্রয়োজনীয় সবকিছু এক ছাদের নিচে।
+                <span>
+                  আমাদের এখানে আপনি পাবেন নিত্যপ্রয়োজনীয় পণ্য, গৃহস্থালি
+                  সামগ্রী, ফ্যাশন আইটেমসহ আরও অনেক কিছু। সাশ্রয়ী দামে সেরা পণ্য
+                  নিয়ে আমরা সবসময় প্রস্তুত।
+                </span>
+              </p>
+              {/* <button className="btn btn-outline border-b-4 text-orange-500 border-0">
+                Read More
+              </button> */}
+            </div>
+          </div>
+        </div>
+      </Parallax>
+
+  );
+};
+
+export default PageCover;

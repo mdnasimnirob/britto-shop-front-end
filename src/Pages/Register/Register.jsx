@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
+import { Helmet } from "react-helmet-async";
 
 
 const Register = () => {
@@ -21,6 +22,9 @@ const Register = () => {
     }
     return (
         <div className="flex items-center justify-center h-screen mt-8">
+            <Helmet>
+                <title>Britto Shop | Register</title>
+            </Helmet>
             <div className="bg-white p-10 px- rounded-xl shadow-md w-full max-w-md">
                 <h2 className="text-2xl font-bold text-center mb-6 text-orange-500"><NavLink to='/'>Britto Shop</NavLink></h2>
                 <p className="font-bold uppercase py-2 text-blue-600">Register</p>

@@ -3,6 +3,8 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProviders';
 import { AiOutlineClose } from 'react-icons/ai';
 import { IoIosArrowDown } from 'react-icons/io';
+import { motion } from "framer-motion";
+
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
@@ -12,7 +14,7 @@ const Navbar = () => {
     const [dropdown, setDropdown] = useState(false);
     console.log(open)
 
-    const categories = ['Fashion', 'Electronics'];
+    const categories = ['Clothing', 'Electronics', 'Sports', 'Kitchen', 'Beauty', 'Toys', 'Kitchen'];
     const location = useLocation();
     const path = location.pathname.split('/')[1]; // e.g. '/fashion' → 'fashion'
     console.log(path)
@@ -24,6 +26,7 @@ const Navbar = () => {
         : '';
 
     const handleCategoryChange = (category) => {
+        setOpen(false);
         setDropdown(false); // Close the dropdown after selection
     };
 
@@ -60,7 +63,7 @@ const Navbar = () => {
 
 
         <li>
-            <NavLink to='/' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5' : 'text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5'}>
+            <NavLink to='/' onClick={()=>{(setOpen(false))}} className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5' : 'text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5'}>
 
                 <h2
                     className='flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 '>
@@ -70,7 +73,7 @@ const Navbar = () => {
             </NavLink>
         </li>
         <li className='lg:my-0 my-1'>
-            <NavLink to='/product' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5' : 'text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5'}>
+            <NavLink to='/product' onClick={()=>{(setOpen(false))}} className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5' : 'text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5'}>
 
                 <h2
                     className='flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 '>
@@ -82,7 +85,7 @@ const Navbar = () => {
 
 
         <li className='lg:my-0 my-1'>
-            <NavLink to='/cart' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px- xl:px-5 lg:py-1.5 py-1 ' : 'text-white text-base lg:px-3 lg:py-1.5 py-1  xl:px-5'}>
+            <NavLink to='/cart' onClick={()=>{(setOpen(false))}} className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px- xl:px-5 lg:py-1.5 py-1 ' : 'text-white text-base lg:px-3 lg:py-1.5 py-1  xl:px-5'}>
 
                 <h2
                     className='flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 '>
@@ -103,7 +106,7 @@ const Navbar = () => {
 
             <h1
                 onClick={() => setDropdown((prev) => !prev)}
-                className={`select-none ${isCategoryActive ? 'text-orange-400 text-base lg:px-3 xl:px-5 lg:py-1.5' : 'text-white text-base lg:px-3 xl:px-5 lg:py-1.5'}`}
+                className={`group select-none ${isCategoryActive ? 'text-orange-400 text-base lg:px-3 xl:px-5 lg:py-1.5' : 'text-white text-base lg:px-3 xl:px-5 lg:py-1.5'}`}
             >
                 <h2 className="group flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1">
                     <span>{currentCategory || 'Categories'}</span>
@@ -119,8 +122,13 @@ const Navbar = () => {
 
 
             {dropdown && (
-                <ul className="lg:absolute bg-black backdrop-blur-[30px] bg-opacity-40 text-white mt-0 lg:mt-9 lg:-left-4 p-2 w-full lg:w-[140px] rounded rounded-t-none shadow-lg lg:shadow-none lg:z-50">
-                    {/* Render dynamic category links */}
+                <motion.ul
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="lg:absolute bg-black backdrop-blur-[30px] bg-opacity-40 text-white mt-0 lg:mt-9 lg:-left-[28px] p-2 w-full lg:w-[140px] rounded rounded-t-none shadow-lg lg:shadow-none lg:z-50"
+                >
                     {categories.map((category) => (
                         <li key={category}>
                             <NavLink
@@ -131,19 +139,18 @@ const Navbar = () => {
                                         ? 'block px-4 py-2 hover:bg-white hover:text-black text-orange-400'
                                         : 'block px-4 py-2 hover:bg-white hover:text-black'
                                 }
-
                             >
                                 {category}
                             </NavLink>
                         </li>
                     ))}
-                </ul>
+                </motion.ul>
             )}
         </li>
 
 
         <li className='lg:my-0 my-1'>
-            <NavLink to='/orders' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5' : 'text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5'}>
+            <NavLink to='/orders' onClick={()=>{(setOpen(false))}} className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5' : 'text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5'}>
 
                 <h2
                     className='flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 '>
@@ -173,7 +180,7 @@ const Navbar = () => {
                 <>
 
                     <li className='lg:my-0 my-1'>
-                        <NavLink to='/login' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5' : 'text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5'}>
+                        <NavLink to='/login' onClick={()=>{(setOpen(false))}} className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5' : 'text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5'}>
 
                             <h2
                                 className='flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 '>
@@ -183,7 +190,7 @@ const Navbar = () => {
                         </NavLink>
                     </li>
                     <li className='lg:my-0 my-1 lg:hidden '>
-                        <NavLink to='/register' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5' : 'text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5'}>
+                        <NavLink to='/register' onClick={()=>{(setOpen(false))}} className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5' : 'text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5'}>
 
                             <h2
                                 className='flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 '>
@@ -235,6 +242,7 @@ const Navbar = () => {
                 </NavLink>
 
             </div>
+            
             <div className="navbar-center hidden lg:flex">
 
             </div>
