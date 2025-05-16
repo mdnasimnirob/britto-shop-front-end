@@ -7,6 +7,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
     const [open, setOpen] = useState(false)
+    const [openProfile, setOpenProfile] = useState(false)
     const menuRef = useRef(null);
     const [dropdown, setDropdown] = useState(false);
     console.log(open)
@@ -29,6 +30,9 @@ const Navbar = () => {
     const handleToggle = () => {
         setOpen((prev) => !prev)
     }
+    const handleProfileToggle = () => {
+        setOpenProfile((prev) => !prev)
+    }
 
     const handleLogout = () => {
         logOut()
@@ -43,6 +47,7 @@ const Navbar = () => {
         const handleClickOutside = (event) => {
             if (menuRef.current && !menuRef.current.contains(event.target)) {
                 setOpen(false);
+                setOpenProfile(false)
             }
         };
 
@@ -98,15 +103,18 @@ const Navbar = () => {
 
             <h1
                 onClick={() => setDropdown((prev) => !prev)}
-                className={`select-none ${isCategoryActive ? 'text-orange-400 text-base lg:px-3 px- xl:px-5 lg:py-1.5 py-' : 'text-white text-base lg:px-3 px- lg:py-1.5 py- xl:px-5'}`}
+                className={`select-none ${isCategoryActive ? 'text-orange-400 text-base lg:px-3 xl:px-5 lg:py-1.5' : 'text-white text-base lg:px-3 xl:px-5 lg:py-1.5'}`}
             >
-                <h2
-                    className='flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 '>
-                    <span>{currentCategory || 'Categories'} </span>
-                    <span className='lg:hidden'> <IoIosArrowDown /></span>
-                </h2>
+                <h2 className="group flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1">
+                    <span>{currentCategory || 'Categories'}</span>
 
+                    {/* Icon hidden by default and shown on lg:hover */}
+                    <span className="lg:hidden lg:group-hover:inline">
+                        <IoIosArrowDown />
+                    </span>
+                </h2>
             </h1>
+
 
 
 
@@ -148,8 +156,8 @@ const Navbar = () => {
         {
             user ? (
                 <>
-                    <li className="bottom-16 right-0 w-full lg:w-auto text-center pr-2 bg-black bg-opacity-40 shadow-md
-                                   fixed lg:static lg:my-0 my-1 lg:bg-transparent lg:shadow-none lg:block">
+                    <li className="bottom-20 right-0 w-full lg:w-auto text-center pr-2 bg-black bg-opacity-40 shadow-md
+                                    fixed lg:my-0 my-1 lg:bg-transparent lg:shadow-none lg:block">
                         <button
                             onClick={handleLogout}
                             className="text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5 w-full"
@@ -174,7 +182,7 @@ const Navbar = () => {
                             </h2>
                         </NavLink>
                     </li>
-                    <li className='lg:my-0 my-1 lg:hidden'>
+                    <li className='lg:my-0 my-1 lg:hidden '>
                         <NavLink to='/register' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5' : 'text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5'}>
 
                             <h2
@@ -234,9 +242,63 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal lg:px-1 px-0 hidden lg:flex  ">
                     {navLink}
                 </ul>
-                <div className='gap-4 ml-2 mr-2 flex'>
-                    <button className=''><img className='rounded-full border border-r-pink-400 border-l-pink-400 border-b-sky-400 border-t-0 border-b-0 p-0.4  w-12 h-12  ' src={user ? user?.photoURL : '/public/shopping.png'} alt="" /></button>
+                <div onClick={handleProfileToggle} className="relative ml-2 mr-2 cursor-pointer">
+                    {/* Profile Button */}
+                    <button>
+                        <img
+                            className="rounded-full border border-pink-400 p-1 w-12 h-12"
+                            src={user?.photoURL || '/shopping.png'}
+                            alt="Profile"
+                        />
+                    </button>
+
+                    {/* Dropdown Panel */}
+                    {openProfile && (
+                        <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border z-50">
+                            <div className="flex flex-col items-center p-4">
+                                <img
+                                    className="w-20 h-20 rounded-full border-2 border-pink-400"
+                                    src={user?.photoURL || '/shopping.png'}
+                                    alt="User"
+                                />
+                                <h3 className="mt-3 font-semibold text-gray-800">{user?.displayName || 'Guest User'}</h3>
+                                <p className="text-sm text-gray-600">{user?.email || 'guest@example.com'}</p>
+                            </div>
+
+                            <div className="border-t">
+                                {user ? (
+                                    <button
+                                        onClick={handleLogout}
+                                        className="w-full text-center text-red-600 py-2 hover:bg-gray-100"
+                                    >
+                                        Logout
+                                    </button>
+                                ) : (
+                                    <div className="flex flex-col p-2">
+                                        <NavLink
+                                            to="/login"
+                                            className={({ isActive }) =>
+                                                `py-2 px-4 rounded text-center ${isActive ? 'text-orange-400' : 'text-gray-800'} hover:bg-gray-100`
+                                            }
+                                        >
+                                            Login
+                                        </NavLink>
+                                        <NavLink
+                                            to="/register"
+                                            className={({ isActive }) =>
+                                                `py-2 px-4 rounded text-center ${isActive ? 'text-orange-400' : 'text-gray-800'} hover:bg-gray-100`
+                                            }
+                                        >
+                                            Register
+                                        </NavLink>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
                 </div>
+
+
             </div>
         </div>
 
