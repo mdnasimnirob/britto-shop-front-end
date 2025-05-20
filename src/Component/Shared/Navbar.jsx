@@ -12,12 +12,12 @@ const Navbar = () => {
     const [openProfile, setOpenProfile] = useState(false)
     const menuRef = useRef(null);
     const [dropdown, setDropdown] = useState(false);
-    console.log(open)
+    // console.log(open)
 
     const categories = ['Clothing', 'Electronics', 'Sports', 'Kitchen', 'Beauty', 'Toys', 'Kitchen'];
     const location = useLocation();
     const path = location.pathname.split('/')[1]; // e.g. '/fashion' → 'fashion'
-    console.log(path)
+    // console.log(path)
 
     // Check if current path is a category
     const isCategoryActive = categories.includes(path);
@@ -207,7 +207,7 @@ const Navbar = () => {
 
     </>)
     return (
-        <div ref={menuRef} className="navbar bg-black shadow-sm fixed z-30 bg-opacity-40 text-white max-w-screen-xl backdrop-blur-[8px]">
+        <div ref={menuRef} className="navbar bg-black shadow-sm fixed z-30 bg-opacity-40 text-white max-w-screen- backdrop-blur-[8px]">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div onClick={handleToggle} role="button" className="btn btn-ghost lg:hidden">
