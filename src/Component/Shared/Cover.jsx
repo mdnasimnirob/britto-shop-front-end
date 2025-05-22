@@ -19,7 +19,7 @@ const Cover = () => {
                 <div className='hero-overlay bg-opacity-60 bg-black pt-8 pb-0.5 h-44'>
                     <SectionTittle
                         subHeading={'Check it out'}
-                        heading={'From Our Menu'}
+                        heading={'From Our Products'}
                     ></SectionTittle>
                 </div>
                 <div className='hero' style={{ height: '600px' }}>

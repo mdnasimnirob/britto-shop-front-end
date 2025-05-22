@@ -51,7 +51,7 @@
     "name": "Gaming Keyboard",
     "description": "Mechanical keyboard with RGB backlighting and programmable keys.",
     "price": 79.99,
-    "category": "popular",
+    "category": "Electronics",
     "stock": 20,
     "image": "https://i.ibb.co/rGC7KxBJ/Gaming-Keyboard.jpg"
   },
@@ -162,7 +162,7 @@
     "name": "K_ids' Pajama Set",
     "description": "Cute and cozy 2-piece pajama set for k_ids.",
     "price": 19.99,
-    "category": "popular",
+    "category": "Clothing",
     "stock": 35,
     "image": "https://i.ibb.co/7xKQkwr3/K-ids-Pajama-Set.jpg"
   },
@@ -244,7 +244,7 @@
     "name": "Blender",
     "description": "High-speed blender for smoothies and shakes.",
     "price": 59.99,
-    "category": "popular",
+    "category": "Home & Kitchen",
     "stock": 18,
     "image": "https://i.ibb.co/7xYP4c5M/Blender.jpg"
   },
@@ -397,7 +397,7 @@
     "name": "Resistance Bands",
     "description": "Set of 5 resistance bands for workouts.",
     "price": 19.99,
-    "image": "https://example.com/products/sports/bands.jpg"
+    "image": "https://i.ibb.co/4nMkC0bs/banner-Sport.jpg"
   },
   {
     "_id": 46,
@@ -409,7 +409,7 @@
   },
   {
     "_id": 47,
-    "category": "popular",
+    "category": "Sports",
     "name": "Bike Helmet",
     "description": "Adjustable cycling helmet for adults.",
     "price": 39.99,
@@ -520,5 +520,40 @@
     "description": "Automatic bubble blower for outdoor fun.",
     "price": 16.49,
     "image": "https://example.com/products/toys/bubbles.jpg"
+  },
+  {
+    "_id": 1006,
+    "name": "Gaming Keyboard",
+    "description": "Mechanical keyboard with RGB backlighting and programmable keys.",
+    "price": 79.99,
+    "category": "popular",
+    "stock": 20,
+    "image": "https://i.ibb.co/rGC7KxBJ/Gaming-Keyboard.jpg"
+  },
+   {
+    "_id": 2008,
+    "name": "K_ids' Pajama Set",
+    "description": "Cute and cozy 2-piece pajama set for k_ids.",
+    "price": 19.99,
+    "category": "popular",
+    "stock": 35,
+    "image": "https://i.ibb.co/7xKQkwr3/K-ids-Pajama-Set.jpg"
+  },
+  {
+    "_id": 3007,
+    "name": "Blender",
+    "description": "High-speed blender for smoothies and shakes.",
+    "price": 59.99,
+    "category": "popular",
+    "stock": 18,
+    "image": "https://i.ibb.co/7xYP4c5M/Blender.jpg"
+  },
+  {
+    "_id": 4007,
+    "category": "popular",
+    "name": "Bike Helmet",
+    "description": "Adjustable cycling helmet for adults.",
+    "price": 39.99,
+    "image": "https://i.ibb.co/yns7XfDQ/banner-Cricket.jpg"
   }
 ]

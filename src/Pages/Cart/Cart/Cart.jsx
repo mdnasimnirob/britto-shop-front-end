@@ -7,6 +7,7 @@ const Cart = () => {
                 <title>Britto Shop | Cart</title>
             </Helmet>
             <h3>this is Cart</h3>
+            
         </div>
     );
 };
