@@ -12,3 +12,18 @@
     justify-content: center;
     width: 100%;
   }
+
+
+  
+:root{
+  --background:#fff;
+  --text:#0a0a0a;
+  --secondary:#1e1e1e;
+}
+
+.dark{
+   --background:#0d0d0d;
+  --text:#f0eeee;
+  --secondary:#e3e3e3;
+}
+

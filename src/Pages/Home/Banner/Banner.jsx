@@ -32,19 +32,19 @@ const Banner = () => {
             }
 
         >
-            <div className="w-full lg:h-[480px] flex items-center justify-center">
+            <div className="w-full lg:h-svh flex items-center justify-center">
                 <img src={img1} alt="Image 1" />
             </div>
-            <div className="w-full lg:h-[480px] flex items-center justify-center">
+            <div className="w-full lg:h-svh flex items-center justify-center">
                 <img src={img2} alt="Image 2" />
             </div>
-            <div className="w-full lg:h-[480px] flex items-center justify-center">
+            <div className="w-full lg:h-svh flex items-center justify-center">
                 <img src={img3} alt="Image 3" />
             </div>
-            <div className="w-full lg:h-[480px] flex items-center justify-center">
+            <div className="w-full lg:h-svh flex items-center justify-center">
                 <img src={img4} alt="Image 4" />
             </div>
-            <div className="w-full lg:h-[480px] object-cover flex items-center justify-center">
+            <div className="w-full lg:h-svh  object-cover flex items-center justify-center">
                 <img src={img5} alt="Image 5" />
             </div>
         </Carousel>
