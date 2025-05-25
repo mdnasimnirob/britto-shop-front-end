@@ -5,15 +5,18 @@ import { AiOutlineClose } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
 import { motion } from "framer-motion";
 import { BiMoon, BiSun } from "react-icons/bi";
+import useCategory from "../../Hooks/useCategory";
 
 const Navbar = () => {
-  const [ isDark, setisdark ] = useState(false);
+  const [isDark, setisdark] = useState(false);
   const { user, logOut } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
   const menuRef = useRef(null);
   const [dropdown, setDropdown] = useState(false);
   // console.log(open)
+
+  const categoryes = useCategory()
 
   const categories = [
     "Clothing",
@@ -137,7 +140,7 @@ const Navbar = () => {
           if (window.innerWidth >= 1024) setDropdown(false);
         }}
       >
-        <h1
+        <div
           onClick={() => setDropdown((prev) => !prev)}
           className={`group select-none ${
             isCategoryActive
@@ -153,7 +156,7 @@ const Navbar = () => {
               <IoIosArrowDown />
             </span>
           </h2>
-        </h1>
+        </div>
 
         {dropdown && (
           <motion.ul
@@ -161,12 +164,12 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="lg:absolute bg-black backdrop-blur-[30px] bg-opacity-40 text-white mt-0 lg:mt-9 lg:-left-[28px] p-2 w-full lg:w-[140px] rounded rounded-t-none shadow-lg lg:shadow-none lg:z-50"
+            className="lg:absolute bg-black backdrop-blur-[30px] bg-opacity-40 text-white mt-0 lg:mt-9 lg:-left-[28px] p-2 w-full lg:w-[140px] rounded rounded-t-none shadow-lg lg:shadow-none lg:z-40"
           >
-            {categories.map((category) => (
+            {categoryes.map((category) => (
               <li key={category}>
                 <NavLink
-                  to={`/${category}`}
+                  to={`/orders/${category.toLowerCase()}`}
                   onClick={() => handleCategoryChange(category)}
                   className={({ isActive }) =>
                     isActive
@@ -262,7 +265,7 @@ const Navbar = () => {
   return (
     <div
       ref={menuRef}
-      className="navbar bg-black shadow-sm fixed z-30 bg-opacity-40 text-white max-w-screen- backdrop-blur-[8px]"
+      className="navbar bg-black shadow-sm fixed z-30 bg-opacity-40 text-white max-w-screen- backdrop-blur-[6px]"
     >
       <div className="navbar-start">
         <div className="dropdown">
@@ -325,7 +328,7 @@ const Navbar = () => {
         </ul>
         <div
           onClick={handleProfileToggle}
-          className="relative ml-2 mr-2 cursor-pointer"
+          className=" ml-2 mr-2 cursor-pointer flex"
         >
           {/* Profile Button */}
           <button>
@@ -338,7 +341,7 @@ const Navbar = () => {
 
           {/* Dropdown Panel */}
           {openProfile && (
-            <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border z-50">
+            <div className="absolute right-0 top-[60px] mt-2 w-64 bg-white rounded-lg shadow-lg border z-50">
               <div className="flex flex-col items-center p-4">
                 <img
                   className="w-20 h-20 rounded-full border-2 border-pink-400"
@@ -389,15 +392,17 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        <button
-          onClick={()=>{
-            setisdark(!isDark)
-            document.documentElement.classList.toggle('dark')
-        }}
-          className="text-3xl hflex items-center ml-6"
-        >
-          {isDark ? <BiSun /> : <BiMoon />}
-        </button>
+        <div>
+          <button
+            onClick={() => {
+              setisdark(!isDark);
+              document.documentElement.classList.toggle("dark");
+            }}
+            className="text-3xl flex items-center pl-2 pr-1 text-white  dark:text-"
+          >
+            {isDark ? <BiSun /> : <BiMoon />}
+          </button>
+        </div>
       </div>
     </div>
   );

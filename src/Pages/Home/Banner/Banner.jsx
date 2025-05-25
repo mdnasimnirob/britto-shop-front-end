@@ -21,7 +21,7 @@ const Banner = () => {
             showArrows={true}
             useKeyboardArrows={true}
             renderThumbs={() =>
-                [img1, img2, img3, img4, img5].map((img, index) => (
+                [ img1, img2, img3, img4, img5].map((img, index) => (
                     <img
                         key={index}
                         src={img}
@@ -32,19 +32,19 @@ const Banner = () => {
             }
 
         >
-            <div className="w-full lg:h-svh flex items-center justify-center">
+            <div className="w-full lg:h-full bg-[#a29bde]  flex items-center justify-center">
                 <img src={img1} alt="Image 1" />
             </div>
-            <div className="w-full lg:h-svh flex items-center justify-center">
+            <div className="w-full lg:h-full flex items-center justify-center">
                 <img src={img2} alt="Image 2" />
             </div>
-            <div className="w-full lg:h-svh flex items-center justify-center">
+            <div className="w-full lg:h-full flex items-center justify-center">
                 <img src={img3} alt="Image 3" />
             </div>
-            <div className="w-full lg:h-svh flex items-center justify-center">
+            <div className="w-full lg:h-full bg-[#f8ce48] flex items-center justify-center">
                 <img src={img4} alt="Image 4" />
             </div>
-            <div className="w-full lg:h-svh  object-cover flex items-center justify-center">
+            <div className="w-full lg:h-full  object-cover flex items-center justify-center">
                 <img src={img5} alt="Image 5" />
             </div>
         </Carousel>

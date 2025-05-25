@@ -1,5 +1,4 @@
-import { color } from 'framer-motion'
-import { Background } from 'react-parallax'
+
 
 export default {
   darkMode: 'class',

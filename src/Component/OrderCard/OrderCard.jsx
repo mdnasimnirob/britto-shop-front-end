@@ -4,10 +4,10 @@ import UseProducts from "../../Hooks/UseProducts";
 const OrderCard = ({products}) => {
     // const [data] = UseProducts();
     return (
-        <div className="grid lg:grid-cols-5 md:grid-cols-2 grid-cols-1 gap-3">
+        <div className="mx-0.5 grid lg:grid-cols-5 md:grid-cols-2 grid-cols-1 gap-3 dark:bg-black bg-base-100 dark:text-white ">
                 {products
                   .map((product) => (
-                    <div className="card bg-base-100  shadow-md ">
+                    <div className="card shadow-md ">
                       <figure>
                         <img
                           className="object-cover h-72 w-full"
@@ -20,7 +20,7 @@ const OrderCard = ({products}) => {
                         <h2 className="card-title">{product.name}</h2>
                         <p className="text-start">{product.description}</p>
                         <div className="card-actions justify-end w-full">
-                          <button className="btn bg-[#ff0066] w-full text-lg ">Order Now</button>
+                          <button className="btn bg-[#ff0066] w-full text-lg dark:border-none ">Order Now</button>
                         </div>
                       </div>
                     </div>

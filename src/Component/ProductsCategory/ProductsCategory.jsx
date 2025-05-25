@@ -9,7 +9,7 @@ const ProductsCategory = ({data}) => {
   return (
     <div>
         <section>
-          <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-5 gap-2 my-5 lg:mx-5">
+          <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-5 gap-2 my-5 lg:mx-5 dark:text-white">
             {
               data.map(data => (
                 <ProductsItem key={data._id} data={data} >
