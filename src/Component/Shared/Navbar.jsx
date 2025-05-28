@@ -6,17 +6,18 @@ import { IoIosArrowDown } from "react-icons/io";
 import { motion } from "framer-motion";
 import { BiMoon, BiSun } from "react-icons/bi";
 import useCategory from "../../Hooks/useCategory";
+import useTheme from "../../Hooks/useTheme";
 
 const Navbar = () => {
-  const [isDark, setisdark] = useState(false);
   const { user, logOut } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
   const menuRef = useRef(null);
   const [dropdown, setDropdown] = useState(false);
+  const [theme, toggleTheme] = useTheme();
   // console.log(open)
 
-  const categoryes = useCategory()
+  const categoryes = useCategory();
 
   const categories = [
     "Clothing",
@@ -394,13 +395,10 @@ const Navbar = () => {
         </div>
         <div>
           <button
-            onClick={() => {
-              setisdark(!isDark);
-              document.documentElement.classList.toggle("dark");
-            }}
+            onClick={toggleTheme}
             className="text-3xl flex items-center pl-2 pr-1 text-white  dark:text-"
           >
-            {isDark ? <BiSun /> : <BiMoon />}
+            {theme === 'dark' ? <BiSun /> : <BiMoon />}
           </button>
         </div>
       </div>

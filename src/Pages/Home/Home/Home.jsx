@@ -13,6 +13,7 @@ const Home = () => {
                 <title>Britto Shop | Home</title>
             </Helmet>
             <Banner />
+            
             <Category />
             <Feature></Feature>
             <div className=''>

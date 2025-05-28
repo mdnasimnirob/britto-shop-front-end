@@ -27,3 +27,17 @@
   --secondary:#e3e3e3;
 }
 
+.image-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.zoom-image {
+  transition: transform 0.3s ease;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.image-container:hover .zoom-image {
+  transform: scale(2);
+}
