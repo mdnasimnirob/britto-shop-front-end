@@ -333,7 +333,7 @@ const Navbar = () => {
           {/* Profile Button */}
           <button>
             <img
-              className="rounded-full border border-pink-400 p-1 w-12 h-12"
+              className="rounded-full   p-1 w-12 h-12"
               src={user?.photoURL || "/shopping.png"}
               alt="Profile"
             />

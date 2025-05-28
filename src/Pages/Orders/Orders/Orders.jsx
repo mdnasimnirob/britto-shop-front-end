@@ -6,7 +6,6 @@ import orderimg from "../../../assets/Orders/imgorder.jpg";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 // import { useParams } from "react-router-dom";
-// import "react-tabs/style/react-tabs.css";
 
 const Orders = () => {
   const [data] = UseProducts();
@@ -28,14 +27,21 @@ const Orders = () => {
 
       <div className="my- mx-  lg:text-lg  border-none dark:text-white dark:bg-black">
         <Tabs selectedIndex={tabIndex} onSelect={(idx) => setTabIndex(idx)}>
-          <TabList className='flex text-[10px] md:text-[20px] md:py-5 lg:text-lg lg:gap-10 md:gap-5 gap-1 lg:py-10 justify-center items-center dark:text-white'>
+          <TabList className="flex text-[10px] md:text-[20px] md:py-5 lg:text-lg lg:gap-10 md:gap-5 gap-1 lg:py-10 justify-center items-center dark:bg-black bg-white dark:text-white text-black ">
             {uniqueCategory.map((category, index) => (
-              <Tab 
-              key={index}
-              className={`px-0.5 hover:border-b-2 hover:duration-500  lg:py-2 cursor-pointer ${
-                tabIndex === index ? 'dark:bg-black text-orange-500 bg-blue border-b-2   border-b-orange-500 dark:border-blue-500  dark:text-blue-500 px- py-2' : 'hover:border-b-orange-500  bg-white px- py-2 dark:border-blue-500 dark:bg-black'
-              }`}
-              >{category}</Tab>
+              <Tab
+                key={index}
+                className={`cursor-pointer px-3 py-2 text-sm md:text-base lg:text-lg 
+                  focus:outline-none focus:ring-0 
+                  border-b-2 transition-colors duration-300
+                  ${
+                    tabIndex === index
+                      ? "border-orange-500 text-orange-500"
+                      : "border-transparent hover:border-orange-300 text-black dark:text-white"
+                  }`}
+              >
+                {category}
+              </Tab>
             ))}
           </TabList>
 
