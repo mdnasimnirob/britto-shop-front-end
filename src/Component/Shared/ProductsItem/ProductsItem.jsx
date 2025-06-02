@@ -9,7 +9,7 @@ const ProductsItem = ({ data }) => {
             alt=""
           />
         </div>
-        <div className=" w-full  p-3">
+        <div className=" w-full  p-3 text-black dark:text-white">
           <div className=" flex justify-between lg:gap-4 gap-1 ">
             <h2 className="lg:text-xl ">{data.name}----</h2>
             <h2 className="text-orange-500">${data.price}</h2>

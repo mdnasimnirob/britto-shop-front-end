@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import UseProducts from "../../Hooks/UseProducts";
 import ProductsItem from "../Shared/ProductsItem/ProductsItem";
 
@@ -19,10 +20,10 @@ const ProductsCategory = ({data}) => {
             }
           </div>
         </section>
-        <div className="my-16 text-center items-center flex justify-center">
+        <NavLink to='/order' className="my-16 text-center items-center flex justify-center">
 
           <button className="btn btn-outline border-b-2 text-blue-500 border-0 flex items-center text-center text-">Find More Products</button>
-        </div>
+        </NavLink>
     </div>
   );
 };

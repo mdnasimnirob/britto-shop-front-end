@@ -1,21 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import OrderCard from "../../../Component/OrderCard/OrderCard";
 import PageCover from "../../../Component/Shared/PageCover";
 import UseProducts from "../../../Hooks/UseProducts";
 import orderimg from "../../../assets/Orders/imgorder.jpg";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-// import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import useCategory from "../../../Hooks/useCategory";
 
 const Orders = () => {
   const [data] = UseProducts();
-  // const { category } = useParams();
+  const uniqueCategory = useCategory();
+  console.log(uniqueCategory)
+  const { category } = useParams(); // get category from URL
+  const navigate = useNavigate();
+
   const [tabIndex, setTabIndex] = useState(0);
-  console.log(data);
-  const category = data.map((item) => item.category);
-  console.log(category);
-  const uniqueCategory = [...new Set(data.map((item) => item.category))];
-  console.log(uniqueCategory);
+
+  // Sync tabIndex with URL
+  useEffect(() => {
+    const index = uniqueCategory.findIndex((c) => c.toLowerCase() === category?.toLowerCase());
+    if (index !== -1) {
+      setTabIndex(index);
+    }
+  }, [category, uniqueCategory]);
+
+  // Update URL on tab change
+  const handleTabSelect = (index) => {
+    setTabIndex(index);
+    navigate(`/orders/${uniqueCategory[index].toLowerCase()}`);
+  };
 
   return (
     <div>
@@ -23,10 +37,10 @@ const Orders = () => {
         img={orderimg}
         tittle="প্রোডাক্ট অর্ডার"
         description="আপনার পছন্দের পণ্য অর্ডার করুন সহজেই। অর্ডারের অগ্রগতি ট্র্যাক করুন এবং সময়মতো ডেলিভারি পান।"
-      ></PageCover>
+      />
 
-      <div className="my- mx-  lg:text-lg  border-none dark:text-white dark:bg-black">
-        <Tabs selectedIndex={tabIndex} onSelect={(idx) => setTabIndex(idx)}>
+      <div className="my- mx- lg:text-lg border-none dark:text-white dark:bg-black">
+        <Tabs selectedIndex={tabIndex} onSelect={handleTabSelect}>
           <TabList className="flex text-[10px] md:text-[20px] md:py-5 lg:text-lg lg:gap-10 md:gap-5 gap-1 lg:py-10 justify-center items-center dark:bg-black bg-white dark:text-white text-black ">
             {uniqueCategory.map((category, index) => (
               <Tab
@@ -45,12 +59,9 @@ const Orders = () => {
             ))}
           </TabList>
 
-          {uniqueCategory.map((category, index) => (
+          {uniqueCategory.map((cat, index) => (
             <TabPanel key={index}>
-              {/* <h2>{category}</h2> */}
-              <OrderCard
-                products={data.filter((item) => item.category === category)}
-              ></OrderCard>
+              <OrderCard products={data.filter((item) => item.category === cat)} />
             </TabPanel>
           ))}
         </Tabs>

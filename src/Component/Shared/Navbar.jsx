@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useParams } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import { AiOutlineClose } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
@@ -17,26 +17,31 @@ const Navbar = () => {
   const [theme, toggleTheme] = useTheme();
   // console.log(open)
 
-  const categoryes = useCategory();
+  const uniqueCategory = useCategory();
 
-  const categories = [
-    "Clothing",
-    "Electronics",
-    "Sports",
-    "Kitchen",
-    "Beauty",
-    "Toys",
-    "Kitchen",
-  ];
-  const location = useLocation();
-  const path = location.pathname.split("/")[1]; // e.g. '/fashion' → 'fashion'
-  // console.log(path)
+// Get current URL
+const location = useLocation();
+const pathSegments = location.pathname.split("/"); // e.g. ['', 'category', 'clothing']
 
-  // Check if current path is a category
-  const isCategoryActive = categories.includes(path);
-  const currentCategory = isCategoryActive
-    ? path.charAt(0).toUpperCase() + path.slice(1)
-    : "";
+// Check if route is /category/:category
+const categoryFromURL = pathSegments[1] === "category" ? pathSegments[2] : null;
+
+// Now match it with your category list
+const matchedCategory = uniqueCategory.find(
+  (cat) => cat.toLowerCase() === categoryFromURL?.toLowerCase()
+);
+
+const currentCategory = matchedCategory || "Categories";
+
+  // const categories = [
+  //   "Clothing",
+  //   "Electronics",
+  //   "Sports",
+  //   "Kitchen",
+  //   "Beauty",
+  //   "Toys",
+  //   "Kitchen",
+  // ];
 
   const handleCategoryChange = () => {
     setOpen(false);
@@ -144,7 +149,7 @@ const Navbar = () => {
         <div
           onClick={() => setDropdown((prev) => !prev)}
           className={`group select-none ${
-            isCategoryActive
+            matchedCategory
               ? "text-orange-400 text-base lg:px-3 xl:px-5 lg:py-1.5"
               : "text-white text-base lg:px-3 xl:px-5 lg:py-1.5"
           }`}
@@ -167,10 +172,10 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
             className="lg:absolute bg-black backdrop-blur-[30px] bg-opacity-40 text-white mt-0 lg:mt-9 lg:-left-[28px] p-2 w-full lg:w-[140px] rounded rounded-t-none shadow-lg lg:shadow-none lg:z-40"
           >
-            {categoryes.map((category) => (
+            {uniqueCategory.map((category) => (
               <li key={category}>
                 <NavLink
-                  to={`/orders/${category.toLowerCase()}`}
+                  to={`/category/${category.toLowerCase()}`}
                   onClick={() => handleCategoryChange(category)}
                   className={({ isActive }) =>
                     isActive

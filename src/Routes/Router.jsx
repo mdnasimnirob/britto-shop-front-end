@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate, replace } from "react-router-dom";
 import MainLayout from "../Layout/MainLayout";
 import Error from "../Pages/Error";
 import Home from "../Pages/Home/Home/Home";
@@ -8,6 +8,7 @@ import Product from "../Pages/Products/Products/Product";
 import Cart from "../Pages/Cart/Cart/Cart";
 import Wishlist from "../Pages/Wishlist/Wishlist/Wishlist";
 import Orders from "../Pages/Orders/Orders/Orders";
+import OurCategory from "../Pages/OurCategories/OurCategory/OurCategory";
 
 
 
@@ -41,8 +42,16 @@ const Router = createBrowserRouter([
                 element: <Wishlist />
             },
             {
-                path: '/orders',
+                path: '/category/:category',
+                element: <OurCategory />
+            },
+            {
+                path: '/orders/:category',
                 element: <Orders />
+            },
+            {
+                path: '/orders',
+                element: <Navigate to="/orders/electronic" replace />,
             },
 
         ]

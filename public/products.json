@@ -190,7 +190,7 @@
     "name": "Non-Stick Cookware Set",
     "description": "10-piece set with pots, pans, and l_ids.",
     "price": 79.99,
-    "category": "Home & Kitchen",
+    "category": "Kitchen",
     "stock": 20,
     "image": "https://i.ibb.co/4ZPHzTV3/Non-Stick-Cookware-Set.jpg"
   },
@@ -199,7 +199,7 @@
     "name": "Vacuum Cleaner",
     "description": "Bagless vacuum with powerful suction and HEPA filter.",
     "price": 119.99,
-    "category": "Home & Kitchen",
+    "category": "Kitchen",
     "stock": 10,
     "image": "https://i.ibb.co/G394LhnB/Vacuum-Cleaner.jpg"
   },
@@ -208,7 +208,7 @@
     "name": "Electric Kettle",
     "description": "1.7L stainless steel kettle with auto shut-off.",
     "price": 29.99,
-    "category": "Home & Kitchen",
+    "category": "Kitchen",
     "stock": 25,
     "image": "https://i.ibb.co/gMdBJwJs/electric-kettle-or-water-boiler-photo.jpg"
   },
@@ -217,7 +217,7 @@
     "name": "Air Fryer",
     "description": "Oil-less fryer for healthier cooking.",
     "price": 89.99,
-    "category": "Home & Kitchen",
+    "category": "Kitchen",
     "stock": 15,
     "image": "https://i.ibb.co/vCjs0VnJ/Wall-Clock.jpg"
   },
@@ -226,7 +226,7 @@
     "name": "Microwave Oven",
     "description": "700W compact microwave with digital controls.",
     "price": 99.99,
-    "category": "Home & Kitchen",
+    "category": "Kitchen",
     "stock": 12,
     "image": "https://i.ibb.co/vCjs0VnJ/Wall-Clock.jpg"
   },
@@ -235,7 +235,7 @@
     "name": "Bed Sheet Set",
     "description": "4-piece microfiber bed sheet set, king size.",
     "price": 49.99,
-    "category": "Home & Kitchen",
+    "category": "Kitchen",
     "stock": 22,
     "image": "https://i.ibb.co/CKrhh3cZ/Bed-Sheet-Set.jpg"
   },
@@ -244,7 +244,7 @@
     "name": "Blender",
     "description": "High-speed blender for smoothies and shakes.",
     "price": 59.99,
-    "category": "Home & Kitchen",
+    "category": "Kitchen",
     "stock": 18,
     "image": "https://i.ibb.co/7xYP4c5M/Blender.jpg"
   },
@@ -253,7 +253,7 @@
     "name": "Ceramic Dinnerware Set",
     "description": "16-piece set includes plates, bowls, and mugs.",
     "price": 69.99,
-    "category": "Home & Kitchen",
+    "category": "Kitchen",
     "stock": 14,
     "image": "https://i.ibb.co/ZpFLfdxs/Ceramic-Dinnerware-Set.jpg"
   },
@@ -262,7 +262,7 @@
     "name": "Toaster",
     "description": "2-slice toaster with browning control.",
     "price": 24.99,
-    "category": "Home & Kitchen",
+    "category": "Kitchen",
     "stock": 35,
     "image": "/images/toaster.jpg"
   },
@@ -271,7 +271,7 @@
     "name": "Wall Clock",
     "description": "Modern design wall clock with silent movement.",
     "price": 19.99,
-    "category": "Home & Kitchen",
+    "category": "Kitchen",
     "stock": 40,
     "image": "https://i.ibb.co/vCjs0VnJ/Wall-Clock.jpg"
   }

@@ -21,7 +21,7 @@ const Footer = () => {
                     <h1 className="text-xl p-2 text-center w-full">Follow US</h1>
                     <h6 className="footer-title">Join us on Social Media</h6>
                     <div className="grid grid-flow-col gap-8 w-full  px-5">
-                        <a href="https://github.com/mdnasimnirob" target="_blank">
+                        <a href="https://github.com/nasimnirob" target="_blank">
                             <FaGithub className=" w-6 h-6" />
 
                         </a>
