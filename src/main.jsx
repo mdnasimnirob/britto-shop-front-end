@@ -6,6 +6,7 @@ import { RouterProvider } from 'react-router-dom'
 import Router from './Routes/Router.jsx'
 import AuthProviders from './providers/AuthProviders.jsx'
 import { HelmetProvider } from 'react-helmet-async';
+import './i18n';
 
 // if (
 //   localStorage.theme === 'dark' ||

@@ -9,7 +9,9 @@ const MainLayout = () => {
     return (
         <div className="max-w-screen-3xl">
             <Navbar/>     
-            <Outlet/>
+            <div className="">
+                <Outlet/>
+            </div>
             <Footer/>
         </div>
     );

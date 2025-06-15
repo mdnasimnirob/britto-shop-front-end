@@ -41,11 +41,11 @@ const Orders = () => {
 
       <div className="my- mx- lg:text-lg border-none dark:text-white dark:bg-black">
         <Tabs selectedIndex={tabIndex} onSelect={handleTabSelect}>
-          <TabList className="flex text-[10px] md:text-[20px] md:py-5 lg:text-lg lg:gap-10 md:gap-5 gap-1 lg:py-10 justify-center items-center dark:bg-black bg-white dark:text-white text-black ">
+          <TabList className="flex text-[10px] md:text-[20px] md:py-5 py-3  lg:text-lg lg:gap-10 md:gap-5 gap-1 lg:py-10 justify-center items-center dark:bg-black bg-white dark:text-white text-black ">
             {uniqueCategory.map((category, index) => (
               <Tab
                 key={index}
-                className={`cursor-pointer px-3 py-2 text-sm md:text-base lg:text-lg 
+                className={`cursor-pointer lg:px-3 px-1 py-2 text-sm md:text-base lg:text-lg 
                   focus:outline-none focus:ring-0 
                   border-b-2 transition-colors duration-300
                   ${

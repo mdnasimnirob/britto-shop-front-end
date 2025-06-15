@@ -526,7 +526,7 @@
     "name": "Gaming Keyboard",
     "description": "Mechanical keyboard with RGB backlighting and programmable keys.",
     "price": 79.99,
-    "category": "popular",
+    "category": "Popular",
     "stock": 20,
     "image": "https://i.ibb.co/rGC7KxBJ/Gaming-Keyboard.jpg"
   },
@@ -535,7 +535,7 @@
     "name": "K_ids' Pajama Set",
     "description": "Cute and cozy 2-piece pajama set for k_ids.",
     "price": 19.99,
-    "category": "popular",
+    "category": "Popular",
     "stock": 35,
     "image": "https://i.ibb.co/7xKQkwr3/K-ids-Pajama-Set.jpg"
   },
@@ -544,13 +544,13 @@
     "name": "Blender",
     "description": "High-speed blender for smoothies and shakes.",
     "price": 59.99,
-    "category": "popular",
+    "category": "Popular",
     "stock": 18,
     "image": "https://i.ibb.co/7xYP4c5M/Blender.jpg"
   },
   {
     "_id": 4007,
-    "category": "popular",
+    "category": "Popular",
     "name": "Bike Helmet",
     "description": "Adjustable cycling helmet for adults.",
     "price": 39.99,

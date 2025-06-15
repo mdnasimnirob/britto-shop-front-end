@@ -2,11 +2,15 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation, useParams } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import { AiOutlineClose } from "react-icons/ai";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { motion } from "framer-motion";
 import { BiMoon, BiSun } from "react-icons/bi";
 import useCategory from "../../Hooks/useCategory";
 import useTheme from "../../Hooks/useTheme";
+
+import i18n from "../../i18n";
+import { useTranslation } from "react-i18next";
+import LanguageSelector from "../Language/LanguageSelector";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -15,23 +19,27 @@ const Navbar = () => {
   const menuRef = useRef(null);
   const [dropdown, setDropdown] = useState(false);
   const [theme, toggleTheme] = useTheme();
+  const [isSticky, setIsSticky] = useState(false);
   // console.log(open)
+
+  const { t } = useTranslation();
 
   const uniqueCategory = useCategory();
 
-// Get current URL
-const location = useLocation();
-const pathSegments = location.pathname.split("/"); // e.g. ['', 'category', 'clothing']
+  // Get current URL
+  const location = useLocation();
+  const pathSegments = location.pathname.split("/"); // e.g. ['', 'category', 'clothing']
 
-// Check if route is /category/:category
-const categoryFromURL = pathSegments[1] === "category" ? pathSegments[2] : null;
+  // Check if route is /category/:category
+  const categoryFromURL =
+    pathSegments[1] === "category" ? pathSegments[2] : null;
 
-// Now match it with your category list
-const matchedCategory = uniqueCategory.find(
-  (cat) => cat.toLowerCase() === categoryFromURL?.toLowerCase()
-);
+  // Now match it with your category list
+  const matchedCategory = uniqueCategory.find(
+    (cat) => cat.toLowerCase() === categoryFromURL?.toLowerCase()
+  );
 
-const currentCategory = matchedCategory || "Categories";
+  const currentCategory = matchedCategory || "Categories";
 
   // const categories = [
   //   "Clothing",
@@ -77,6 +85,17 @@ const currentCategory = matchedCategory || "Categories";
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   const navLink = (
     <>
       <li>
@@ -88,11 +107,11 @@ const currentCategory = matchedCategory || "Categories";
           className={({ isActive }) =>
             isActive
               ? "text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
-              : "text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
+              : "text-inherit hover:text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
           }
         >
-          <h2 className="flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 ">
-            <span>Home </span>
+          <h2 className="flex justify-between text-lg lg:text-base items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 ">
+            <span>{t("Home")}</span>
             {/* <span> <IoIosArrowDown /></span> */}
           </h2>
         </NavLink>
@@ -106,11 +125,11 @@ const currentCategory = matchedCategory || "Categories";
           className={({ isActive }) =>
             isActive
               ? "text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
-              : "text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
+              : "text-inherit hover:text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
           }
         >
-          <h2 className="flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 ">
-            <span>Shop </span>
+          <h2 className="flex justify-between text-lg lg:text-base items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 ">
+            <span>{t("Shop")} </span>
             {/* <span> <IoIosArrowDown /></span> */}
           </h2>
         </NavLink>
@@ -124,18 +143,18 @@ const currentCategory = matchedCategory || "Categories";
           }}
           className={({ isActive }) =>
             isActive
-              ? "text-orange-400 text-base lg:px-3 px- xl:px-5 lg:py-1.5 py-1 "
-              : "text-white text-base lg:px-3 lg:py-1.5 py-1  xl:px-5"
+              ? "text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
+              : "text-inherit hover:text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
           }
         >
-          <h2 className="flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 ">
-            <span>Cart </span>
+          <h2 className="flex justify-between items-center text-lg lg:text-base gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 ">
+            <span>{t("Cart")}</span>
             {/* <span> <IoIosArrowDown /></span> */}
           </h2>
         </NavLink>
       </li>
       {/* <li>
-            <NavLink to='/wishlist' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white text-base lg:px-3 px-2 xl:px-5'}>Wishlist</NavLink>
+            <NavLink to='/wishlist' className={({ isActive }) => isActive ? 'text-orange-400 text-base lg:px-3 px-2 xl:px-5' : 'text-white hover:text-orange-400 text-base lg:px-3 px-2 xl:px-5'}>Wishlist</NavLink>
         </li> */}
       <li
         className="relative cursor-pointer lg:my-0 my-1"
@@ -150,16 +169,24 @@ const currentCategory = matchedCategory || "Categories";
           onClick={() => setDropdown((prev) => !prev)}
           className={`group select-none ${
             matchedCategory
-              ? "text-orange-400 text-base lg:px-3 xl:px-5 lg:py-1.5"
-              : "text-white text-base lg:px-3 xl:px-5 lg:py-1.5"
+              ? "text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
+              : "text-inherit hover:text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
           }`}
         >
-          <h2 className="group flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1">
-            <span>{currentCategory || "Categories"}</span>
+          <h2 className="group  flex justify-between text-lg lg:text-base items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1">
+            <span>
+              {currentCategory ? t(currentCategory) : t("Categories")}
+            </span>
 
-            {/* Icon hidden by default and shown on lg:hover */}
-            <span className="lg:hidden lg:group-hover:inline">
+            {/* Default down arrow (visible by default, hidden on lg:hover) */}
+            <span className="lg:hidden inline">
               <IoIosArrowDown />
+            </span>
+
+            {/* For large screens, show down arrow by default, and switch to up on hover */}
+
+            <span className="hidden lg:inline">
+              {dropdown ? <IoIosArrowUp /> : <IoIosArrowDown />}
             </span>
           </h2>
         </div>
@@ -170,7 +197,7 @@ const currentCategory = matchedCategory || "Categories";
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="lg:absolute bg-black backdrop-blur-[30px] bg-opacity-40 text-white mt-0 lg:mt-9 lg:-left-[28px] p-2 w-full lg:w-[140px] rounded rounded-t-none shadow-lg lg:shadow-none lg:z-40"
+            className="lg:absolute text-lg lg:text-base bg-black backdrop-blur-[30px] bg-opacity-40 text-white  mt-0 lg:mt-9 lg:-left-[20px] p-2 w-full lg:w-[140px] rounded rounded-t-none shadow-lg lg:shadow-none lg:z-40"
           >
             {uniqueCategory.map((category) => (
               <li key={category}>
@@ -180,10 +207,10 @@ const currentCategory = matchedCategory || "Categories";
                   className={({ isActive }) =>
                     isActive
                       ? "block px-4 py-2 hover:bg-white hover:text-black text-orange-400"
-                      : "block px-4 py-2 hover:bg-white hover:text-black"
+                      : "block px-4 py-2 hover:bg-white  hover:text-orange-400"
                   }
                 >
-                  {category}
+                  {t(category)}
                 </NavLink>
               </li>
             ))}
@@ -200,11 +227,11 @@ const currentCategory = matchedCategory || "Categories";
           className={({ isActive }) =>
             isActive
               ? "text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
-              : "text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
+              : "text-inherit hover:text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
           }
         >
-          <h2 className="flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 ">
-            <span>Orders </span>
+          <h2 className="flex justify-between text-lg lg:text-base items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 ">
+            <span>{t("Orders")} </span>
             {/* <span> <IoIosArrowDown /></span> */}
           </h2>
         </NavLink>
@@ -218,10 +245,10 @@ const currentCategory = matchedCategory || "Categories";
           >
             <button
               onClick={handleLogout}
-              className="text-white  text-base lg:px-3 lg:py-1.5 py-1 xl:px-5 w-full"
+              className="text-white hover:text-orange-400  text-base lg:px-3 lg:py-1.5 py-1 xl:px-5 w-full"
             >
-              <h2 className="flex justify-center items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 w-full">
-                <span>Logout</span>
+              <h2 className="flex justify-center text-lg lg:text-base items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 w-full">
+                <span>{t("Logout")}</span>
               </h2>
             </button>
           </li>
@@ -237,11 +264,11 @@ const currentCategory = matchedCategory || "Categories";
               className={({ isActive }) =>
                 isActive
                   ? "text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
-                  : "text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
+                  : "text-inherit hover:text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
               }
             >
-              <h2 className="flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 ">
-                <span>Login </span>
+              <h2 className="flex justify-between text-lg lg:text-base items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 ">
+                <span>{t("Login")} </span>
                 {/* <span> <IoIosArrowDown /></span> */}
               </h2>
             </NavLink>
@@ -255,11 +282,11 @@ const currentCategory = matchedCategory || "Categories";
               className={({ isActive }) =>
                 isActive
                   ? "text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
-                  : "text-white text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
+                  : "text-inherit hover:text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
               }
             >
-              <h2 className="flex justify-between items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 ">
-                <span>Register </span>
+              <h2 className="flex justify-between text-lg lg:text-base items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 ">
+                <span>{t("Register")} </span>
                 {/* <span> <IoIosArrowDown /></span> */}
               </h2>
             </NavLink>
@@ -271,7 +298,11 @@ const currentCategory = matchedCategory || "Categories";
   return (
     <div
       ref={menuRef}
-      className="navbar bg-black shadow-sm fixed z-30 bg-opacity-40 text-white max-w-screen- backdrop-blur-[6px]"
+      className={`navbar ${
+        isSticky
+          ? "fixed bg-black/50 text-white shadow-md"
+          : "relative bg-white text-black dark:text-white dark:bg-black"
+      } z-30 max-w-screen backdrop-blur-[6px] transition-all duration-300`}
     >
       <div className="navbar-start">
         <div className="dropdown">
@@ -303,15 +334,15 @@ const currentCategory = matchedCategory || "Categories";
           <ul
             className={
               open
-                ? "bg-black/40  shadow-sm backdrop-blur-[30px]  h-screen mt-3 w-56 p-2 z-40 fixed left-0 lg:hidden xl:hidden text-white"
-                : "hidden -left-80 text-white "
+                ? " bg-gray-800  shadow-sm backdrop-blur-[30px]  h-screen mt-3 w-56 p-2 z-40 fixed left-0 lg:hidden xl:hidden text-white hover:text-orange-400"
+                : "hidden -left-80 text-white hover:text-orange-400 "
             }
           >
             {navLink}
           </ul>
 
           {/* <ul
-                        className={open ? 'bg-black shadow-sm backdrop-blur-[30px] rounded-lg rounded-l-none h-screen opacity-40 mt-3 w-56 p-2 z-40 fixed left-0 ' : 'hidden -left-80 text-white'}>
+                        className={open ? 'bg-black shadow-sm backdrop-blur-[30px] rounded-lg rounded-l-none h-screen opacity-40 mt-3 w-56 p-2 z-40 fixed left-0 ' : 'hidden -left-80 text-white hover:text-orange-400'}>
                         {navLink}
                     </ul> */}
         </div>
@@ -320,7 +351,7 @@ const currentCategory = matchedCategory || "Categories";
             <span className="lg:text-xl text-base text-orange-400 uppercase">
               Britto Shop
             </span>
-            <span className="font-normal text-white uppercase lg:text-[12px] text-[10px] tracking-widest">
+            <span className="font-normal text-inherit hover:text-orange-400 uppercase lg:text-[12px] text-[10px] tracking-widest">
               E C O M M E R C E
             </span>
           </div>
@@ -355,12 +386,14 @@ const currentCategory = matchedCategory || "Categories";
                   alt="User"
                 />
                 <h3 className="mt-3 font-semibold text-gray-800">
-                  {user?.displayName || "Guest User"}
+                  {user?.displayName || t("Guest User")}
                 </h3>
                 <p className="text-sm text-gray-600">
                   {user?.email || "guest@example.com"}
                 </p>
               </div>
+
+              <LanguageSelector></LanguageSelector>
 
               <div className="border-t">
                 {user ? (
@@ -368,7 +401,7 @@ const currentCategory = matchedCategory || "Categories";
                     onClick={handleLogout}
                     className="w-full text-center text-red-600 py-2 hover:bg-gray-100"
                   >
-                    Logout
+                    {t("Logout")}
                   </button>
                 ) : (
                   <div className="flex flex-col p-2">
@@ -380,7 +413,7 @@ const currentCategory = matchedCategory || "Categories";
                         } hover:bg-gray-100`
                       }
                     >
-                      Login
+                      {t("Login")}
                     </NavLink>
                     <NavLink
                       to="/register"
@@ -390,7 +423,7 @@ const currentCategory = matchedCategory || "Categories";
                         } hover:bg-gray-100`
                       }
                     >
-                      Register
+                      {t("Register")}
                     </NavLink>
                   </div>
                 )}
@@ -401,9 +434,9 @@ const currentCategory = matchedCategory || "Categories";
         <div>
           <button
             onClick={toggleTheme}
-            className="text-3xl flex items-center pl-2 pr-1 text-white  dark:text-"
+            className="text-3xl flex items-center pl-2 pr-1 text-white hover:text-orange-400 text-inherit dark:text-"
           >
-            {theme === 'dark' ? <BiSun /> : <BiMoon />}
+            {theme === "dark" ? <BiSun /> : <BiMoon />}
           </button>
         </div>
       </div>
