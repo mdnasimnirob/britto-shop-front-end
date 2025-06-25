@@ -197,7 +197,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="lg:absolute text-lg lg:text-base bg-black backdrop-blur-[30px] bg-opacity-40 text-white  mt-0 lg:mt-9 lg:-left-[20px] p-2 w-full lg:w-[140px] rounded rounded-t-none shadow-lg lg:shadow-none lg:z-40"
+            className="lg:absolute text-lg lg:text-base bg-white/30 dark:bg-black backdrop-blur-[30px] text-black dark:text-white mt-0 lg:mt-9 lg:-left-[20px] p-2 w-full lg:w-[140px] rounded rounded-t-none shadow-lg lg:shadow-none lg:z-40"
           >
             {uniqueCategory.map((category) => (
               <li key={category}>
@@ -206,8 +206,8 @@ const Navbar = () => {
                   onClick={() => handleCategoryChange(category)}
                   className={({ isActive }) =>
                     isActive
-                      ? "block px-4 py-2 hover:bg-white hover:text-black text-orange-400"
-                      : "block px-4 py-2 hover:bg-white  hover:text-orange-400"
+                      ? "block px-4 py-2 text-orange-400"
+                      : "block px-4 py-2 hover:bg-black/10 dark:hover:bg-white/10 hover:text-orange-400"
                   }
                 >
                   {t(category)}
