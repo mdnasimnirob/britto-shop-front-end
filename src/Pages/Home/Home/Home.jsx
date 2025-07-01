@@ -6,6 +6,7 @@ import Feature from "../Feature/Feature";
 import { Helmet } from "react-helmet-async";
 import UseProducts from "../../../Hooks/UseProducts";
 import ProductsCategory from "../../../Component/ProductsCategory/ProductsCategory";
+import SectionTittle from "../../../Component/SectionTittle/SectionTittle";
 
 const Home = () => {
   const [data] = UseProducts();
@@ -16,6 +17,8 @@ const Home = () => {
         <title>Britto Shop | Home</title>
       </Helmet>
       <Banner />
+      <Category />
+      <SectionTittle subHeading='Popular Product' heading='Our Popular Products' ></SectionTittle>
       {/* <div class="flex text-center justify-center text-white font-semibold">
         <p class="bg-blue-500 w-48 h-9 py-1 text-xl  [clip-path:polygon(10%_0%,100%_0%,90%_100%,0%_100%)] mr-[-40px]">
           Buy Now
@@ -27,7 +30,7 @@ const Home = () => {
       <div className="mt-10">
         <ProductsCategory data={popularData}></ProductsCategory>
       </div>
-      <Category />
+      
       <Feature></Feature>
       <div className="">
         <Cover />

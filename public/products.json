@@ -283,7 +283,7 @@
     "name": "Moisturizing Cream",
     "description": "Hydrating face cream for all skin types.",
     "price": 15.99,
-    "image": "https://example.com/products/beauty/moisturizer.jpg"
+    "image": "https://i.ibb.co/4gd9PDWq/H08cd12d94d9c46c6980b62abee43dea3-K-jpg-720x720q50.jpg"
   },
   {
     "_id": 32,
@@ -355,7 +355,7 @@
     "name": "Hair Straightener",
     "description": "Ceramic flat iron for silky smooth hair.",
     "price": 34.50,
-    "image": "https://example.com/products/beauty/straightener.jpg"
+    "image": "https://i.ibb.co/4gd9PDWq/H08cd12d94d9c46c6980b62abee43dea3-K-jpg-720x720q50.jpg"
   },
 
   
@@ -447,7 +447,7 @@
     "name": "Building Blocks Set",
     "description": "Creative building blocks for ages 3+.",
     "price": 19.99,
-    "image": "https://i.ibb.co/zHr9JTY5/sport5.jpg"
+    "image": "https://i.ibb.co/7xKQkwr3/K-ids-Pajama-Set.jpg"
   },
   {
     "_id": 52,
@@ -519,7 +519,7 @@
     "name": "Bubble Machine",
     "description": "Automatic bubble blower for outdoor fun.",
     "price": 16.49,
-    "image": "https://example.com/products/toys/bubbles.jpg"
+    "image": "https://i.ibb.co/7xKQkwr3/K-ids-Pajama-Set.jpg"
   },
   {
     "_id": 1006,
@@ -555,5 +555,13 @@
     "description": "Adjustable cycling helmet for adults.",
     "price": 39.99,
     "image": "https://i.ibb.co/yns7XfDQ/banner-Cricket.jpg"
+  },
+  {
+    "_id": 4008,
+    "category": "Combo",
+    "name": "Hoodie Combo",
+    "description": "Adjustable cycling helmet for adults.",
+    "price": 39.99,
+    "image": "https://i.ibb.co/XfTgVcqJ/Unisex-Hoodie.jpg"
   }
 ]

@@ -1,108 +1,151 @@
-import { useRef, useState, useEffect } from 'react';
-import img1 from '../../../assets/t-shart/download (2).jpeg';
-import img2 from '../../../assets/t-shart/images (1).jpeg';
-import img3 from '../../../assets/t-shart/images (2).jpeg';
-import img4 from '../../../assets/t-shart/images (3).jpeg';
-import img5 from '../../../assets/t-shart/images.jpeg';
-import SectionTittle from '../../../Component/SectionTittle/SectionTittle';
+import { useRef, useState, useEffect } from "react";
+import SectionTittle from "../../../Component/SectionTittle/SectionTittle";
+import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
+import UseProducts from "../../../Hooks/UseProducts";
+import { useNavigate } from "react-router-dom";
 
 const Category = () => {
-  const categories = [
-    { name: 'Electronic', image: img1 },
-    { name: 'Clothing', image: img2 },
-    { name: 'Kitchen', image: img3 },
-    { name: 'Beauty', image: img4 },
-    { name: 'Sport', image: img5 },
-    { name: 'Toys', image: img5 },
-    { name: 'Popular', image: img5 },
-    { name: 'Combo', image: img5 },
-    { name: 'Combo', image: img5 },
-    { name: 'Combo', image: img5 },
-    { name: 'Combo', image: img5 },
-  ];
+  const [data] = UseProducts();
+  const navigate = useNavigate();
+
+  // 1. Get unique categories dynamically
+  const uniqueCategories = Array.from(
+    new Set(data.map((item) => item.category))
+  );
+
+  // 2. Map categories to objects with name + first product image
+  const categoriesToShow = uniqueCategories.map((categoryName) => {
+    const firstProduct = data.find((item) => item.category === categoryName);
+    return {
+      name: categoryName,
+      image: firstProduct
+        ? firstProduct.image
+        : "https://via.placeholder.com/200x300?text=No+Image",
+    };
+  });
+
+  // 2. For each category, find the latest product image
+  // const categoriesToShow = uniqueCategories.map((categoryName) => {
+  //   const products = data.filter((item) => item.category === categoryName);
+  //   const latestProduct = products[products.length - 1]; // Last item = latest
+
+  //   return {
+  //     name: categoryName,
+  //     image: latestProduct
+  //       ? latestProduct.image
+  //       : "https://via.placeholder.com/200x300?text=No+Image",
+  //   };
+  // });
 
   const scrollRef = useRef();
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(false);
 
+  // const handleScroll = () => {
+  //   const el = scrollRef.current;
+  //   setShowLeftButton(el.scrollLeft > 0);
+  //   setShowRightButton(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
+  // };
+
   const handleScroll = () => {
-    const current = scrollRef.current;
-    const scrollLeft = current.scrollLeft;
-    const scrollWidth = current.scrollWidth;
-    const clientWidth = current.clientWidth;
+  const el = scrollRef.current;
+  // console.log({
+  //   scrollLeft: el.scrollLeft,
+  //   clientWidth: el.clientWidth,
+  //   scrollWidth: el.scrollWidth
+  // });
+  setShowLeftButton(el.scrollLeft > 0);
+  setShowRightButton(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
+};
 
-    // Show/hide left button
-    setShowLeftButton(scrollLeft > 0);
 
-    // Show/hide right button
-    if (scrollLeft + clientWidth >= scrollWidth - 1) {
-      setShowRightButton(false);
-    } else {
-      setShowRightButton(true);
-    }
+  const smoothScroll = (distance, duration = 500) => {
+    const el = scrollRef.current;
+    const start = el.scrollLeft;
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      el.scrollLeft = start + distance * progress;
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
   };
 
-  const scrollLeft = () => {
-    scrollRef.current.scrollBy({ left: -864, behavior: 'smooth' });
-  };
+  const scrollLeft = () => smoothScroll(-600, 700);
+  const scrollRight = () => smoothScroll(600, 700);
 
-  const scrollRight = () => {
-    scrollRef.current.scrollBy({ left: 864, behavior: 'smooth' });
-  };
+  // useEffect(() => {
+  //   const el = scrollRef.current;
+  //   el.addEventListener("scroll", handleScroll);
+  //   handleScroll();
+  //   return () => el.removeEventListener("scroll", handleScroll);
+  // }, []);
 
-  useEffect(() => {
-  const current = scrollRef.current;
-  current.addEventListener('scroll', handleScroll);
+ useEffect(() => {
+  const el = scrollRef.current;
+  el.addEventListener("scroll", handleScroll);
 
-  // Run once to update buttons based on initial scroll position
-  handleScroll();
+  // Use requestAnimationFrame to ensure layout is ready
+  const raf = requestAnimationFrame(() => {
+    handleScroll();
+  });
 
   return () => {
-    current.removeEventListener('scroll', handleScroll);
+    el.removeEventListener("scroll", handleScroll);
+    cancelAnimationFrame(raf);
   };
-}, []);
+}, [data]);  // IMPORTANT: Run this after 'data' changes too
 
 
+  
   return (
     <section>
-      <SectionTittle subHeading="from 10am to 11pm" heading="ONLINE ORDER" />
+      <SectionTittle subHeading="from 10am to 12pm" heading="ONLINE ORDER" />
 
       <div className="relative">
-        {/* Left Button */}
         {showLeftButton && (
           <button
             onClick={scrollLeft}
-            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/80  text-white px-3 py-2 rounded-full z-10"
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black text-white p-4 rounded-full z-10 text-2xl shadow-lg hover:bg-black/70 transition"
+            aria-label="Scroll Left"
           >
-            &#8592;
+            <SlArrowLeft />
           </button>
         )}
 
-        {/* Right Button */}
-        {showRightButton && (<button
-          onClick={scrollRight}
-          className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/80 text-white px-3 py-2 rounded-full z-10"
-        >
-          &#8594;
-        </button>)}
+        {showRightButton && (
+          <button
+            onClick={scrollRight}
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black text-white p-4 rounded-full z-10 text-2xl shadow-lg hover:bg-black/70 transition"
+            aria-label="Scroll Right"
+          >
+            <SlArrowRight />
+          </button>
+        )}
 
-        {/* Scrollable Container */}
         <div
           ref={scrollRef}
-          className="overflow-x-auto scroll-smooth flex space-x-4 p-4"
+          className="overflow-x-auto scrollbar-hide flex space-x-4 p-4"
+          role="list"
         >
-          {categories.map((item, index) => (
+          {categoriesToShow.map((category, idx) => (
             <div
-              key={index}
-              className="min-w-[200px] h-[300px] bg-gray-100 relative flex items-center justify-center rounded-lg overflow-hidden shrink-0"
+              key={idx}
+              onClick={() => navigate(`/category/${category.name}`)}
+              className="min-w-[200px] h-[300px] bg-gray-100 relative flex items-center justify-center rounded-lg overflow-hidden shrink-0 hover:shadow-sm  hover:shadow-orange-500 hover:scale-105 duration-700 transition-transform"
+              role="listitem"
             >
               <img
-                src={item.image}
-                alt={`t-shirt-${index}`}
-                className="w-[200px] h-[300px] object-cover"
+                src={category.image}
+                alt={`${category.name} category`}
+                className="w-[200px] h-[300px] object-cover brightness-75"
               />
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded">
-                {item.name}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
+                <button className="btn btn-outline border-b-2 text-white border-0 flex items-center text-2xl text-center">
+                  {category.name}
+                </button>
               </div>
             </div>
           ))}

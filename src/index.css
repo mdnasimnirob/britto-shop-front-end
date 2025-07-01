@@ -41,3 +41,12 @@
 .image-container:hover .zoom-image {
   transform: scale(2);
 }
+
+
+
+body {
+  /* font-family: 'Playfair', serif; */
+  /* font-family: 'Poppins', sans-serif; */
+  font-family: 'Times New Roman', Times, serif;
+   font-size: 18px;
+}

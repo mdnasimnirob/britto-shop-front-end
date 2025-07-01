@@ -110,7 +110,7 @@ const Navbar = () => {
               : "text-inherit hover:text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
           }
         >
-          <h2 className="flex justify-between text-lg lg:text-base items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 ">
+          <h2 className="flex justify-between text-lg lg:text-lg items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 ">
             <span>{t("Home")}</span>
             {/* <span> <IoIosArrowDown /></span> */}
           </h2>
@@ -128,7 +128,7 @@ const Navbar = () => {
               : "text-inherit hover:text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
           }
         >
-          <h2 className="flex justify-between text-lg lg:text-base items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 ">
+          <h2 className="flex justify-between text-lg lg:text-lg items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 ">
             <span>{t("Shop")} </span>
             {/* <span> <IoIosArrowDown /></span> */}
           </h2>
@@ -147,7 +147,7 @@ const Navbar = () => {
               : "text-inherit hover:text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
           }
         >
-          <h2 className="flex justify-between items-center text-lg lg:text-base gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 ">
+          <h2 className="flex justify-between items-center text-lg lg:text-lg gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 ">
             <span>{t("Cart")}</span>
             {/* <span> <IoIosArrowDown /></span> */}
           </h2>
@@ -173,7 +173,7 @@ const Navbar = () => {
               : "text-inherit hover:text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
           }`}
         >
-          <h2 className="group  flex justify-between text-lg lg:text-base items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1">
+          <h2 className="group  flex justify-between text-lg lg:text-lg items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1">
             <span>
               {currentCategory ? t(currentCategory) : t("Categories")}
             </span>
@@ -197,7 +197,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="lg:absolute text-lg lg:text-base bg-white/30 dark:bg-black backdrop-blur-[30px] text-black dark:text-white mt-0 lg:mt-9 lg:-left-[20px] p-2 w-full lg:w-[140px] rounded rounded-t-none shadow-lg lg:shadow-none lg:z-40"
+            className="lg:absolute text-lg lg:text-lg bg-white/30 dark:bg-black backdrop-blur-[30px] text-black dark:text-white mt-0 lg:mt-9 lg:-left-[20px] p-2 w-full lg:w-[140px] rounded rounded-t-none shadow-lg lg:shadow-none lg:z-40"
           >
             {uniqueCategory.map((category) => (
               <li key={category}>
@@ -230,7 +230,7 @@ const Navbar = () => {
               : "text-inherit hover:text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
           }
         >
-          <h2 className="flex justify-between text-lg lg:text-base items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 ">
+          <h2 className="flex justify-between text-lg lg:text-lg items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 ">
             <span>{t("Orders")} </span>
             {/* <span> <IoIosArrowDown /></span> */}
           </h2>
@@ -247,7 +247,7 @@ const Navbar = () => {
               onClick={handleLogout}
               className="text-white hover:text-orange-400  text-base lg:px-3 lg:py-1.5 py-1 xl:px-5 w-full"
             >
-              <h2 className="flex justify-center text-lg lg:text-base items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 w-full">
+              <h2 className="flex justify-center text-lg lg:text-lg items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-opacity-40 shadow-md lg:shadow-none lg:py-0 py-1 w-full">
                 <span>{t("Logout")}</span>
               </h2>
             </button>
@@ -267,7 +267,7 @@ const Navbar = () => {
                   : "text-inherit hover:text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
               }
             >
-              <h2 className="flex justify-between text-lg lg:text-base items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 ">
+              <h2 className="flex justify-between text-lg lg:text-lg items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 ">
                 <span>{t("Login")} </span>
                 {/* <span> <IoIosArrowDown /></span> */}
               </h2>
@@ -285,7 +285,7 @@ const Navbar = () => {
                   : "text-inherit hover:text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
               }
             >
-              <h2 className="flex justify-between text-lg lg:text-base items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 ">
+              <h2 className="flex justify-between text-lg lg:text-lg items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 ">
                 <span>{t("Register")} </span>
                 {/* <span> <IoIosArrowDown /></span> */}
               </h2>
@@ -434,7 +434,7 @@ const Navbar = () => {
         <div>
           <button
             onClick={toggleTheme}
-            className="text-3xl flex items-center pl-2 pr-1 text-white hover:text-orange-400 text-inherit dark:text-"
+            className="text-3xl flex items-center pl-2 pr-1 text-black dark:text-white hover:text-orange-400 text-inherit dark:text-"
           >
             {theme === "dark" ? <BiSun /> : <BiMoon />}
           </button>

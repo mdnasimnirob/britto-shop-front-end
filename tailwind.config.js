@@ -9,6 +9,12 @@ export default {
   theme: {
     
     extend: {
+      fontFamily: {
+        // playfair: ['Playfair', 'serif'],
+        //  poppins: ['Poppins', 'sans-serif'],
+        // libre: ['Libre Baskerville', 'serif'],
+        time: ['Times New Roman', 'time', 'serif']
+      },
       colors: {
         primary: {
           DEFAULT: "#ffffff", // light mode
@@ -27,6 +33,7 @@ export default {
   },
   plugins: [
     require('daisyui'),
+    require('tailwind-scrollbar-hide'),
   ],
 }
 
