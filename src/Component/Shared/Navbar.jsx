@@ -167,7 +167,7 @@ const Navbar = () => {
       >
         <div
           onClick={() => setDropdown((prev) => !prev)}
-          className={`group select-none ${
+          className={`group select-none z-20 ${
             matchedCategory
               ? "text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
               : "text-inherit hover:text-orange-400 text-base lg:px-3 lg:py-1.5 py-1 xl:px-5"
@@ -197,22 +197,24 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="lg:absolute text-lg lg:text-lg bg-white/30 dark:bg-black backdrop-blur-[30px] text-black dark:text-white mt-0 lg:mt-9 lg:-left-[20px] p-2 w-full lg:w-[140px] rounded rounded-t-none shadow-lg lg:shadow-none lg:z-40"
+            className="lg:absolute text-lg lg:text-lg text-black dark:text-white mt-0 lg:top-10 lg:-left-[40px] lg:right-10 lg:pt-4 w-full  border-orange-400 lg:w-[180px] rounded rounded-t-none shadow-lg lg:shadow-none lg:z-10"
           >
             {uniqueCategory.map((category) => (
-              <li key={category}>
+              <div className="bg-white dark:bg-black lg:px-2 px-2 py-1 lg:py-1 shadow-2xl">
+                <li key={category}>
                 <NavLink
                   to={`/category/${category.toLowerCase()}`}
                   onClick={() => handleCategoryChange(category)}
                   className={({ isActive }) =>
                     isActive
-                      ? "block px-4 py-2 text-orange-400"
-                      : "block px-4 py-2 hover:bg-black/10 dark:hover:bg-white/10 hover:text-orange-400"
+                      ? "block px-4 py-2 text-orange-400 border border-blue-500 "
+                      : "block px-4 py-2 hover:bg-black/10 dark:hover:bg-white/10 hover:text-orange-400 "
                   }
                 >
                   {t(category)}
                 </NavLink>
               </li>
+              </div>
             ))}
           </motion.ul>
         )}
@@ -241,7 +243,7 @@ const Navbar = () => {
         <>
           <li
             className="bottom-20 right-0 w-full lg:w-auto text-center pr-2 bg-black bg-opacity-40 shadow-md
-                                    fixed lg:my-0 my-1 lg:bg-transparent lg:shadow-none lg:block"
+                                    fixed lg:my-0 my-1 lg:bg-transparent lg:shadow-none md:hidden lg:block"
           >
             <button
               onClick={handleLogout}
@@ -302,7 +304,7 @@ const Navbar = () => {
         isSticky
           ? "fixed bg-black/50 text-white shadow-md"
           : "relative bg-white text-black dark:text-white dark:bg-black"
-      } z-30 max-w-screen backdrop-blur-[6px] transition-all duration-300`}
+      } z-30 max-w-screen backdrop-blur-[6px] transition-all duration-300 shadow-md `}
     >
       <div className="navbar-start">
         <div className="dropdown">
@@ -360,12 +362,12 @@ const Navbar = () => {
 
       <div className="navbar-center hidden lg:flex"></div>
       <div className="navbar-end ">
-        <ul className="menu menu-horizontal lg:px-1 px-0 hidden lg:flex  ">
+        <ul className="menu menu-horizontal lg:px-1 px-0 hidden lg:flex ">
           {navLink}
         </ul>
         <div
           onClick={handleProfileToggle}
-          className=" ml-2 mr-2 cursor-pointer flex"
+          className=" ml-1 mr-1 cursor-pointer flex"
         >
           {/* Profile Button */}
           <button>
@@ -434,7 +436,7 @@ const Navbar = () => {
         <div>
           <button
             onClick={toggleTheme}
-            className="text-3xl flex items-center pl-2 pr-1 text-black dark:text-white hover:text-orange-400 text-inherit dark:text-"
+            className="text-3xl flex items-center pl-1 pr-1 text-black dark:text-white hover:text-orange-400 text-inherit dark:text-"
           >
             {theme === "dark" ? <BiSun /> : <BiMoon />}
           </button>
