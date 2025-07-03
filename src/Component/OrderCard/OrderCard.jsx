@@ -1,4 +1,6 @@
 import ZoomImage from "../ZoomImage";
+import { TbCurrencyTaka } from "react-icons/tb";
+
 
 const OrderCard = ({ products }) => {
   return (
@@ -7,8 +9,8 @@ const OrderCard = ({ products }) => {
         <div key={product._id} className="card shadow-md">
           <figure className="relative">
             <ZoomImage src={product.image} alt={product.name} />
-            <p className="absolute right-0 top-0 bg-[#ff0066] text-white rounded-md p-1">
-              $ {product.price}
+            <p className="absolute right-0 top-0 bg-[#ff0066] text-white rounded-md p-1 flex items-center ">
+              <TbCurrencyTaka className="text-2xl" />{product.price} 
             </p>
           </figure>
           <div className="card-body text-center flex items-start">

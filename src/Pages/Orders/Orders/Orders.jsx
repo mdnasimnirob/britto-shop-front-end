@@ -33,11 +33,11 @@ const Orders = () => {
 
   return (
     <div>
-      <PageCover
+      {/* <PageCover
         img={orderimg}
         tittle="প্রোডাক্ট অর্ডার"
         description="আপনার পছন্দের পণ্য অর্ডার করুন সহজেই। অর্ডারের অগ্রগতি ট্র্যাক করুন এবং সময়মতো ডেলিভারি পান।"
-      />
+      /> */}
 
       <div className="my- mx- lg:text-lg border-none dark:text-white dark:bg-black">
         <Tabs selectedIndex={tabIndex} onSelect={handleTabSelect}>
