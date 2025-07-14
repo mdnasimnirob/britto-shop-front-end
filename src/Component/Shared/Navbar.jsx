@@ -199,7 +199,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="lg:absolute text-lg lg:text-lg text-black dark:text-white mt-0 lg:top-10 lg:-left-[40px] lg:right-10 lg:pt-4 w-full  border-orange-400 lg:w-[180px] rounded rounded-t-none shadow-lg lg:shadow-none lg:z-10"
+            className="lg:absolute text-lg lg:text-lg text-black dark:text-white mt-0 lg:top-10 lg:-left-[40px] lg:right-10 lg:pt-4 w-full  border-orange-400 lg:w-[180px] rounded rounded-t-none shadow-lg lg:shadow-none lg:z-50"
           >
             {uniqueCategory.map((category) => (
               <div className="bg-white dark:bg-black lg:px-2 px-2 py-1 lg:py-1 shadow-2xl">
@@ -245,7 +245,7 @@ const Navbar = () => {
         <>
           <li
             className="bottom-20 right-0 w-full lg:w-auto text-center pr-2 bg-black bg-opacity-40 shadow-md
-                                    fixed lg:my-0 my-1 lg:bg-transparent lg:shadow-none md:hidden lg:block"
+                                    fixed lg:my-0 my-1 lg:bg-transparent lg:shadow-none md:hidden lg:hidden"
           >
             <button
               onClick={handleLogout}
@@ -271,7 +271,7 @@ const Navbar = () => {
                   : "text-inherit hover:text-orange-400 text-base lg:px-2 lg:py-1.5 py-1 xl:px-5"
               }
             >
-              <h2 className="flex justify-between text-lg lg:text-lg items-center gap-1 pl- lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 ">
+              <h2 className="flex justify-between text-lg lg:text-lg items-center gap-1 pl-2 lg:pl-0 lg:bg-transparent bg-black bg-opacity-40 lg:shadow-none shadow-md lg:py-0 py-1 ">
                 <span>{t("Login")} </span>
                 <RxPerson />
               </h2>
@@ -311,30 +311,30 @@ const Navbar = () => {
       <div className="navbar-start">
         <div className="dropdown">
           <div
-            onClick={handleToggle}
-            role="button"
-            className="btn btn-ghost lg:hidden"
-          >
-            {open ? (
-              <AiOutlineClose className="h-4 w-4" />
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {" "}
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />{" "}
-              </svg>
-            )}
-          </div>
+  onClick={handleToggle}
+  role="button"
+  className="px-4 py-[7px] lg:hidden "
+>
+  {open ? (
+    <AiOutlineClose className="h-6 w-6 " />
+  ) : (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6 "
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M4 6h16M4 12h8m-8 6h16"
+      />
+    </svg>
+  )}
+</div>
+
           <ul
             className={
               open
@@ -350,21 +350,22 @@ const Navbar = () => {
                         {navLink}
                     </ul> */}
         </div>
-        <NavLink to="/" className="btn btn-ghost px-4 py-6">
+        <NavLink to="/" className="px-1 sm:px-5">
           <div className="flex flex-col items-center w-fit text-center">
-            <span className="lg:text-xl text-base text-orange-400 uppercase">
+            <span className="text-sm sm:text-base lg:text-xl text-orange-400 uppercase ">
               Britto Shop
             </span>
-            <span className="font-normal text-inherit hover:text-orange-400 uppercase lg:text-[12px] text-[10px] tracking-widest">
+            <span className="font-normal text-[8.7px] sm:text-[10px] lg:text-[12px] text-inherit hover:text-orange-400 uppercase tracking-widest">
               E C O M M E R C E
             </span>
           </div>
         </NavLink>
+
         <div className="">
-          <div className="px- fixed lg:right-50 lg:left-50 lg:top-[17px] top-4 left-60 lg:w-96  md:block hidden">
-            <div className=" flex items-center w-full rounded-md overflow-hidden  bg- border border-[#fb923c] text-center justify-center">
+          <div className="fixed lg:right-50 lg:left-50 lg:top-[17px] top-4 left-60 lg:w-80 md:block hidden">
+            <div className="flex items-center w-full rounded-md overflow-hidden border border-[#fb923c] text-center justify-center">
               <input
-                className="text- w-full px-3 py-1 bg-black/5 backdrop-blur-none place font-normal  placeholder:text-base  text-md bg- outline-none ring-0 focus:outline-none rounded-l-[7px]"
+                className="font-extralight font-poppins w-full px-3 py-1.5 bg-black/5 placeholder:text-sm text-base outline-none ring-0 focus:outline-none rounded-l-[7px]"
                 type="search"
                 placeholder="Enter product name"
               />
@@ -374,6 +375,21 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+
+        {/* <div className="">
+          <div className="px- fixed lg:right-50 lg:left-50 lg:top-[17px] top-4 left-60 lg:w-80   md:block hidden">
+            <div className=" flex items-center w-full rounded-md overflow-hidden  bg- border border-[#fb923c] text-center justify-center">
+              <input
+                className="text- w-full px-3 py-1 bg-black/5 backdrop-blur-none place font-thin  placeholder:text-base  text-lg  bg- outline-none ring-0 focus:outline-none rounded-l-[7px]"
+                type="search"
+                placeholder="Enter product name"
+              />
+              <button className="h-9 w-9 flex items-center justify-center bg-[#fb923c] hover:bg-yellow-500 transition text-black">
+                <CiSearch className="absolute" />
+              </button>
+            </div>
+          </div>
+        </div> */}
       </div>
 
       <div className="navbar-center hidden lg:flex"></div>
@@ -389,18 +405,18 @@ const Navbar = () => {
           <button>
             {user?.photoURL ? (
               <img
-                className="rounded-full   p-1 w-12 h-12"
-                src={user?.photoURL || <RxPerson />}
+                className="rounded-full p-1 w-12 h-12"
+                src={user.photoURL}
                 alt="Profile"
               />
             ) : (
-              ""
+              <RxPerson className="text-4xl rounded-full p-1 hidden" />
             )}
           </button>
 
           {/* Dropdown Panel */}
           {openProfile && (
-            <div className="absolute right-0 top-[64px] mt-2 w-64 bg-white rounded-b-lg shadow-lg border z-50">
+            <div className="absolute right-0 top-[64px] lg:mt-2 w-64 bg-white rounded-b-lg shadow-lg border z-10">
               <div className="flex flex-col items-center p-4">
                 {user ? (
                   <img
@@ -410,8 +426,6 @@ const Navbar = () => {
                   />
                 ) : (
                   <span>
-                    {" "}
-                    <h1>Login</h1>{" "}
                     <RxPerson className="w-16 h-16 text-black rounded-full p-1" />
                   </span>
                 )}

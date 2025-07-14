@@ -3,6 +3,7 @@ import SectionTittle from "../../../Component/SectionTittle/SectionTittle";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import UseProducts from "../../../Hooks/UseProducts";
 import { useNavigate } from "react-router-dom";
+import { fbqTrack } from "../../../Hooks/fbPixel";
 
 const Category = () => {
   const [data] = UseProducts();
@@ -24,40 +25,15 @@ const Category = () => {
     };
   });
 
-  // 2. For each category, find the latest product image
-  // const categoriesToShow = uniqueCategories.map((categoryName) => {
-  //   const products = data.filter((item) => item.category === categoryName);
-  //   const latestProduct = products[products.length - 1]; // Last item = latest
-
-  //   return {
-  //     name: categoryName,
-  //     image: latestProduct
-  //       ? latestProduct.image
-  //       : "https://via.placeholder.com/200x300?text=No+Image",
-  //   };
-  // });
-
   const scrollRef = useRef();
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(false);
 
-  // const handleScroll = () => {
-  //   const el = scrollRef.current;
-  //   setShowLeftButton(el.scrollLeft > 0);
-  //   setShowRightButton(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
-  // };
-
   const handleScroll = () => {
-  const el = scrollRef.current;
-  // console.log({
-  //   scrollLeft: el.scrollLeft,
-  //   clientWidth: el.clientWidth,
-  //   scrollWidth: el.scrollWidth
-  // });
-  setShowLeftButton(el.scrollLeft > 0);
-  setShowRightButton(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
-};
-
+    const el = scrollRef.current;
+    setShowLeftButton(el.scrollLeft > 0);
+    setShowRightButton(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
+  };
 
   const smoothScroll = (distance, duration = 500) => {
     const el = scrollRef.current;
@@ -76,30 +52,21 @@ const Category = () => {
   const scrollLeft = () => smoothScroll(-600, 700);
   const scrollRight = () => smoothScroll(600, 700);
 
-  // useEffect(() => {
-  //   const el = scrollRef.current;
-  //   el.addEventListener("scroll", handleScroll);
-  //   handleScroll();
-  //   return () => el.removeEventListener("scroll", handleScroll);
-  // }, []);
+  useEffect(() => {
+    const el = scrollRef.current;
+    el.addEventListener("scroll", handleScroll);
 
- useEffect(() => {
-  const el = scrollRef.current;
-  el.addEventListener("scroll", handleScroll);
+    // Use requestAnimationFrame to ensure layout is ready
+    const raf = requestAnimationFrame(() => {
+      handleScroll();
+    });
 
-  // Use requestAnimationFrame to ensure layout is ready
-  const raf = requestAnimationFrame(() => {
-    handleScroll();
-  });
+    return () => {
+      el.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, [data]); // IMPORTANT: Run this after 'data' changes too
 
-  return () => {
-    el.removeEventListener("scroll", handleScroll);
-    cancelAnimationFrame(raf);
-  };
-}, [data]);  // IMPORTANT: Run this after 'data' changes too
-
-
-  
   return (
     <section>
       <SectionTittle subHeading="from 10am to 12pm" heading="ONLINE ORDER" />
@@ -133,7 +100,13 @@ const Category = () => {
           {categoriesToShow.map((category, idx) => (
             <div
               key={idx}
-              onClick={() => navigate(`/category/${category.name}`)}
+              // onClick={() => navigate(`/category/${category.name}`)}
+              onClick={() => {
+                fbqTrack("ViewCategory", {
+                  content_category: category.name,
+                });
+                navigate(`/category/${category.name}`);
+              }}
               className="min-w-[200px] h-[300px] bg-gray-100 relative flex items-center justify-center rounded-lg overflow-hidden shrink-0 hover:shadow-sm  hover:shadow-orange-500 hover:scale-105 duration-700 transition-transform"
               role="listitem"
             >

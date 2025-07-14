@@ -11,7 +11,7 @@ export default {
     extend: {
       fontFamily: {
         // playfair: ['Playfair', 'serif'],
-        //  poppins: ['Poppins', 'sans-serif'],
+         poppins: ['Poppins', 'sans-serif'],
         // libre: ['Libre Baskerville', 'serif'],
         time: ['Times New Roman', 'time', 'serif']
       },

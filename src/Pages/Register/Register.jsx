@@ -83,15 +83,17 @@ const Register = () => {
                 className="inline-block text-gray-500 ps-[0.15rem] hover:cursor-pointer"
                 htmlFor="exampleCheck2"
               >
-                I accept{" "}
+                <div className="pl-2 no-copy">
+                  I accept{" "}
                 <span className="text-blue-600">Terms & Conditions</span>
+                </div>
               </label>
             </div>
           </div>
 
           <div className="text-center lg:text-left">
             
-            <div className="flex items-center justify- p-4 rounded-md">
+            <div className="flex items-center justify- py-4 rounded-md">
               <button
                 type="button"
                 className="btn border-none w-full h-[45px] bg-[#438AFE] uppercase text-white rounded-md"

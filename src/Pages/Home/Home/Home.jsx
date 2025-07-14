@@ -35,6 +35,7 @@ const Home = () => {
       <div className="">
         <Cover />
       </div>
+      
     </div>
   );
 };

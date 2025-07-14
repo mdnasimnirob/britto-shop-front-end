@@ -46,7 +46,15 @@
 
 body {
   /* font-family: 'Playfair', serif; */
-  /* font-family: 'Poppins', sans-serif; */
+  font-family: 'Poppins', sans-serif;
   font-family: 'Times New Roman', Times, serif;
    font-size: 18px;
+}
+
+/* No Copy Text */
+.no-copy {
+  user-select: none;
+  -webkit-user-select: none; /* For Safari */
+  -moz-user-select: none;    /* For Firefox */
+  -ms-user-select: none;     /* For IE/Edge */
 }

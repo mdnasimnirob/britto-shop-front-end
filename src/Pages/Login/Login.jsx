@@ -62,13 +62,13 @@ const Login = () => {
           </div>
 
           <div className="mb-6 flex items-center justify-between">
-            <div className="mb-[0.125rem] block min-h-[1.5rem]">
-              <input className="" type="checkbox" value="" id="exampleCheck2" />
+            <div className=" mb-[0.125rem] flex items-center justify-center min-h-[1.5rem]">
+              <input className="accent-blue-500 " type="checkbox" value="" id="exampleCheck2" />
               <label
-                className="inline-block text-gray-400 ml-3 ps-[0.15rem] hover:cursor-pointer"
+                className="inline-block text-gray-400 ps-[0.15rem] hover:cursor-pointer"
                 for="exampleCheck2"
               >
-                Remember me
+                <span className="no-copy pl-2">Remember me</span>
               </label>
             </div>
 
@@ -76,7 +76,7 @@ const Login = () => {
           </div>
 
           <div className="text-center lg:text-left">
-            <div className="flex items-center justify- p-4 rounded-md">
+            <div className="flex items-center justify- py-4 rounded-md">
               <button
                 type="button"
                 className="btn border-none w-full h-[45px] bg-[#438AFE] uppercase text-white rounded-md"

@@ -12,14 +12,14 @@ const Footer = () => {
                         Chartola Mor, College Road, Rangpur
                         <br />
                     </p>
-                     <h1 className=" text-center w-full ">Phone : +8801757-706811</h1>
                      <h1 className=" text-center w-full ">Email : mdnasimnirob4650@gmail.com</h1>
+                     <h1 className=" text-center w-full ">Phone : +8801757-706811</h1>
                      <h1 className=" text-center w-full ">Weekdays : 9:00 AM - 6:00 PM</h1>
                      <h1 className=" text-center w-full ">weekends : 10:00 AM - 4:00 PM</h1>
                 </aside>
                 <nav className="">
                     <h1 className="text-xl p-2 text-center w-full">Follow US</h1>
-                    <h6 className="footer-title">Join us on Social Media</h6>
+                    <h6 className="footer-title text-white font-poppins font-extralight">Join us on Social Media</h6>
                     <div className="grid grid-flow-col gap-8 w-full  px-5">
                         <a href="https://github.com/nasimnirob" target="_blank">
                             <FaGithub className=" w-6 h-6" />

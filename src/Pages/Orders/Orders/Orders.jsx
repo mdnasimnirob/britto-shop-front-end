@@ -45,7 +45,7 @@ const Orders = () => {
             {uniqueCategory.map((category, index) => (
               <Tab
                 key={index}
-                className={`cursor-pointer lg:px-3 px-1 py-2 text-sm md:text-base lg:text-lg 
+                className={`cursor-pointer lg:px-3 md:px-2 sm:px-3 -space-x-28 py-2 text-sm md:text-base lg:text-lg 
                   focus:outline-none focus:ring-0 
                   border-b-2 transition-colors duration-300
                   ${
